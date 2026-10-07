@@ -1,0 +1,57 @@
+{
+ "client": "Lisa · Easy Learning Lisa",
+ "signataire": "Lisa",
+ "boite": "",
+ "mode": "validation",
+ "maj": "2026-10-07T23:30:00+02:00",
+ "etat": "arret",
+ "motif": "",
+ "demarrage": null,
+ "jour": {
+  "partis": 0,
+  "plafond": 5,
+  "max": 30
+ },
+ "parcours": {
+  "trouves": 0,
+  "contactes": 0,
+  "messages": 0,
+  "reponses": 0,
+  "interesses": 0,
+  "arrets": 0,
+  "invalides": 0
+ },
+ "prets": 0,
+ "attente": [],
+ "reponses": [],
+ "contacts": [],
+ "prevu": [],
+ "journal": [],
+ "cible": "Cadres et indépendants de langue anglaise qui ont des clients, des collègues ou des partenaires français. ; Managers et dirigeants internationaux qui encadrent une équipe en France.",
+ "sequence": [
+  0,
+  3,
+  7
+ ],
+ "pilotage": {
+  "expediteur": "Lisa",
+  "adresse": "",
+  "validation": "Validation requise avant tout premier envoi",
+  "jours": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "heures": [
+   8.5,
+   17.5
+  ],
+  "depart_jour": 5,
+  "plafond_jour": 30,
+  "prospects_mois": 100
+ },
+ "prochains": [],
+ "dossier": "lisa-easy-learning"
+}
