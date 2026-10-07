@@ -1,0 +1,57 @@
+{
+ "client": "Alexandre Bellanger",
+ "signataire": "Alexandre Bellanger",
+ "boite": "",
+ "mode": "validation",
+ "maj": "2026-10-07T23:30:00+02:00",
+ "etat": "arret",
+ "motif": "",
+ "demarrage": null,
+ "jour": {
+  "partis": 0,
+  "plafond": 5,
+  "max": 30
+ },
+ "parcours": {
+  "trouves": 0,
+  "contactes": 0,
+  "messages": 0,
+  "reponses": 0,
+  "interesses": 0,
+  "arrets": 0,
+  "invalides": 0
+ },
+ "prets": 0,
+ "attente": [],
+ "reponses": [],
+ "contacts": [],
+ "prevu": [],
+ "journal": [],
+ "cible": "Entreprises de plus de 500 salariés relevant d'une convention collective couverte, en priorité dans les branches citées sur le site : bâtiment et travaux publics, restauration, métallurgie, transport, santé privée. ; Experts-comptables, cabinets de conseil en ressources humaines, organisations professionnelles de branche.",
+ "sequence": [
+  0,
+  3,
+  7
+ ],
+ "pilotage": {
+  "expediteur": "Alexandre Bellanger",
+  "adresse": "",
+  "validation": "Validation requise avant tout premier envoi",
+  "jours": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "heures": [
+   8.5,
+   17.5
+  ],
+  "depart_jour": 5,
+  "plafond_jour": 30,
+  "prospects_mois": 100
+ },
+ "prochains": [],
+ "dossier": "alexandre-bellanger"
+}
