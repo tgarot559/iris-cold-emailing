@@ -18,6 +18,22 @@ async function lire(env, chemin) {
   if (!r.ok) return null;
   try { return JSON.parse(await r.text()); } catch (e) { return null; }
 }
+async function lireMeta(env, chemin) {
+  const r = await fetch("https://api.github.com/repos/" + env.GITHUB_REPO + "/contents/" + chemin, { headers: entetes(env, false) });
+  if (!r.ok) return null;
+  try {
+    const x = await r.json();
+    const texte = decodeURIComponent(escape(atob((x.content || "").replace(/\n/g, ""))));
+    return { sha: x.sha, data: JSON.parse(texte) };
+  } catch (e) { return null; }
+}
+async function ecrireJson(env, chemin, data, sha, message) {
+  const r = await fetch("https://api.github.com/repos/" + env.GITHUB_REPO + "/contents/" + chemin, {
+    method: "PUT", headers: entetes(env),
+    body: JSON.stringify({ message, content: base64(JSON.stringify(data, null, 2)), branch: env.GITHUB_BRANCH || "main", ...(sha ? {sha} : {}) })
+  });
+  return r.ok;
+}
 function base64(texte) {
   const octets = new TextEncoder().encode(texte);
   let s = "";
@@ -51,7 +67,13 @@ export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get("console")) {
     if (!env.CLE_CONSOLE || request.headers.get("x-cle") !== env.CLE_CONSOLE) return json({ erreur: "cle" }, 403);
-    return json((await lire(env, "espaces/_index.json")) || {});
+    const index = (await lire(env, "espaces/_index.json")) || {};
+    for (const code of Object.keys(index)) {
+      const dossier = index[code].dossier;
+      const fiche = dossier ? await lire(env, "clients/" + dossier + "/client.json") : null;
+      if (fiche) index[code].config = { actif: !!fiche.actif, envoi: fiche.envoi !== false, mode: fiche.mode || "validation", boite: fiche.boite?.adresse || "", cible: fiche.cible?.description || "" };
+    }
+    return json(index);
   }
   const code = url.searchParams.get("code") || "";
   if (!RE_CODE.test(code)) return json({ erreur: "code" }, 404);
@@ -65,6 +87,32 @@ export async function onRequestPost({ request, env }) {
   if (!env.GITHUB_TOKEN || !env.GITHUB_REPO) return json({ erreur: "configuration" }, 500);
   let b;
   try { b = JSON.parse(couper(await request.text(), 200000)); } catch (e) { return json({ erreur: "format" }, 400); }
+  if (b && b.admin) {
+    if (!env.CLE_CONSOLE || request.headers.get("x-cle") !== env.CLE_CONSOLE) return json({ erreur: "cle" }, 403);
+    const codeAdmin = b.code || "";
+    if (!RE_CODE.test(codeAdmin)) return json({ erreur: "code" }, 404);
+    const espace = await lire(env, "espaces/" + codeAdmin + ".json");
+    if (!espace || !/^[A-Za-z0-9_-]{1,60}$/.test(espace.dossier || "")) return json({ erreur: "code" }, 404);
+    const chemin = "clients/" + espace.dossier + "/client.json";
+    const meta = await lireMeta(env, chemin);
+    if (!meta) return json({ erreur: "fiche" }, 404);
+    const action = b.action || "";
+    if (action === "donner_main") meta.data.mode = "validation";
+    else if (action === "pilotage_iris") meta.data.mode = "autonome";
+    else if (action === "ouvrir_envois") meta.data.envoi = true;
+    else if (action === "fermer_envois") meta.data.envoi = false;
+    else if (action === "activer_client") meta.data.actif = true;
+    else if (action === "desactiver_client") meta.data.actif = false;
+    else if (action === "pause" || action === "reprise") {
+      const date = new Date().toISOString();
+      const nom = date.replace(/[-:.TZ]/g, "").slice(0, 17) + "-admin-" + Math.random().toString(36).slice(2, 6) + ".json";
+      const decisions = [action === "pause" ? {action:"pause", motif:"demandée depuis l'admin"} : {action:"reprise"}];
+      const ok = await ecrireJson(env, "clients/" + espace.dossier + "/decisions/" + nom, {par:"admin", date, decisions}, null, "[CF-Pages-Skip] décision admin " + espace.dossier);
+      return ok ? json({ok:true}) : json({erreur:"depot"}, 502);
+    } else return json({ erreur: "action" }, 400);
+    const ok = await ecrireJson(env, chemin, meta.data, meta.sha, "[CF-Pages-Skip] réglage admin " + espace.dossier + " : " + action);
+    return ok ? json({ok:true, config:{actif:!!meta.data.actif,envoi:meta.data.envoi!==false,mode:meta.data.mode||"validation"}}) : json({erreur:"depot"}, 502);
+  }
   const code = (b && b.code) || "";
   if (!RE_CODE.test(code)) return json({ erreur: "code" }, 404);
   const d = await lire(env, "espaces/" + code + ".json");
