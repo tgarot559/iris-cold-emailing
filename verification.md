@@ -1,12 +1,12 @@
-# Vérification du 2026-10-07 à 18:24
+# Vérification du 2026-10-07 à 22:57
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
 ## Clés
 
 - Clé Claude : présente
-  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 401 : {"type":"error","error":{"type":"authentication_error","message":"API key is invalid."},"request_id":null}
-  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 401 : {"type":"error","error":{"type":"authentication_error","message":"API key is invalid."},"request_id":null}
+  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header with the ID of the workspace to use. Add the header, or use an API key
+  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header with the ID of the workspace to use. Add the header, or use an API key
 - Clé ScrapeGraphAI : présente
   - compte : plan Free Plan, 500 crédits restants
 
@@ -22,5 +22,5 @@ Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 - Laurent Vicherd (inactif) : pas d'adresse d'envoi dans la fiche
 - Lionel Segard (inactif) : pas d'adresse d'envoi dans la fiche
 - Lisa · Easy Learning Lisa (inactif) : pas d'adresse d'envoi dans la fiche
-- VerifAmende Flottes (actif, préparation) : envoi REFUSÉ (SMTPAuthenticationError (535, b'5.7.8 Error: authentication failed: (reason unavailable)')), relève REFUSÉE (error b'[AUTHENTICATIONFAILED] Authentication failed.')
+- VerifAmende Flottes (actif, préparation) : envoi OK, relève OK
 - Willy Foucher · Ice Roll Rollissimo (inactif) : pas d'adresse d'envoi dans la fiche
