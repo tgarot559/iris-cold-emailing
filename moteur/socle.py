@@ -136,20 +136,26 @@ def controler_fiche(fiche):
 
 
 def secrets(client):
-    """Mots de passe : jamais dans les fichiers du dépôt.
-    Soit COLDMAIL_SECRETS (JSON : {"anthropic": "...", "clients": {"<nom>": {"mdp": "..."}}}),
-    soit un fichier secrets.json à la racine (ignoré par git), soit ANTHROPIC_API_KEY."""
+    """Secrets : jamais dans les fichiers du dépôt.
+    Les clés IA peuvent être passées séparément par ANTHROPIC_API_KEY et SGAI_API_KEY.
+    COLDMAIL_SECRETS reste compatible avec l'ancien format JSON.
+    COLDMAIL_CLIENT_PASSWORD accepte un mot de passe de boîte simple pour le client actif."""
     brut = os.environ.get("COLDMAIL_SECRETS")
     chemin = RACINE / "secrets.json"
     data = {}
     if brut:
-        data = json.loads(brut)
+        try:
+            data = json.loads(brut)
+        except json.JSONDecodeError:
+            data = {}
     elif chemin.exists():
         data = json.loads(chemin.read_text(encoding="utf-8"))
+    mdp_json = (data.get("clients", {}).get(client, {}) or {}).get("mdp", "")
+    mdp_env = os.environ.get("COLDMAIL_CLIENT_PASSWORD", "")
     return {
         "anthropic": data.get("anthropic") or os.environ.get("ANTHROPIC_API_KEY", ""),
         "anthropic_espace": data.get("anthropic_espace", ""),
-        "mdp": (data.get("clients", {}).get(client, {}) or {}).get("mdp", ""),
+        "mdp": mdp_json or mdp_env,
         "scrapegraph": data.get("scrapegraph") or os.environ.get("SGAI_API_KEY", ""),
         "scrapegraph_client": (data.get("clients", {}).get(client, {}) or {}).get("scrapegraph", ""),
     }
