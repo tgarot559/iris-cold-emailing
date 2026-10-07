@@ -75,6 +75,40 @@ de passe principal). Pour Google Workspace et Gmail : compte Google > Sécurité
 et IMAP activé dans les réglages Gmail. Le mieux, pour ne pas exposer l'adresse principale du client : une
 seconde adresse sur un domaine voisin du sien (`prenom@nom-entreprise.fr` pour `nomentreprise.fr`).
 
+
+## Ajouter un nouveau client sans modifier le code
+
+L'infrastructure est mutualisée. Pour un nouveau client, il n'y a pas de nouveau moteur à installer.
+
+1. Créer sa fiche avec `python -m moteur nouveau <client-id>`.
+2. Renseigner son offre, sa cible, son signataire et sa boîte dans `clients/<client-id>/client.json`.
+3. Ajouter le mot de passe de sa boîte dans le secret GitHub Actions `COLDMAIL_MAIL_PASSWORDS`, sous forme de JSON :
+
+```json
+{
+  "verifamende-flottes": "mot-de-passe-boite",
+  "nouveau-client": "mot-de-passe-boite"
+}
+```
+
+Ce coffre est secret et n'est jamais écrit dans le dépôt. Les anciens secrets individuels `COLDMAIL_PASSWORD_<CLIENT>` restent compatibles.
+
+Avant tout envoi réel, laisser `"envoi": false`, vérifier la boîte, laisser IRIS trouver et rédiger quelques prospects, puis faire valider la qualité par le client.
+
+### Ce que voit le client
+
+Son espace de suivi explique désormais clairement :
+- la cible travaillée ;
+- le nom du signataire et la boîte utilisée ;
+- le mode de validation ;
+- la cadence et les créneaux d'envoi ;
+- ce qu'IRIS a déjà fait (contacts trouvés, contactés, messages, réponses) ;
+- les prochains messages : à qui, dans quelle entreprise, à quelle adresse, quelle étape, quand, et d'où vient le contact ;
+- ce qui attend son accord ;
+- les réponses reçues et le journal des actions.
+
+L'objectif est qu'un client comprenne seul ce qui a été fait et ce qui va se passer ensuite.
+
 ## La page de suivi en direct
 
 Même mécanique que les espaces IRIS : un site Cloudflare Pages gratuit, alimenté par ce dépôt.
