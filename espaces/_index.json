@@ -1,0 +1,92 @@
+{
+ "g2axzrqn5j99": {
+  "dossier": "alexandre-bellanger",
+  "client": "Alexandre Bellanger",
+  "etat": "arret",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ },
+ "gbw3qzqef6dp": {
+  "dossier": "laurent-vicherd",
+  "client": "Laurent Vicherd",
+  "etat": "arret",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ },
+ "vvv2zu6xw9ti": {
+  "dossier": "lionel-segard",
+  "client": "Lionel Segard",
+  "etat": "arret",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ },
+ "hjshi62xz9sh": {
+  "dossier": "lisa-easy-learning",
+  "client": "Lisa · Easy Learning Lisa",
+  "etat": "arret",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ },
+ "c2gpvctqqmyj": {
+  "dossier": "verifamende-flottes",
+  "client": "VerifAmende Flottes",
+  "etat": "preparation",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ },
+ "yv5vae7kcm6u": {
+  "dossier": "willy-foucher",
+  "client": "Willy Foucher · Ice Roll Rollissimo",
+  "etat": "arret",
+  "motif": "",
+  "attente": 0,
+  "reponses": 0,
+  "contactes": 0,
+  "jour": {
+   "partis": 0,
+   "plafond": 5,
+   "max": 30
+  },
+  "maj": "2026-10-07T23:30:00+02:00"
+ }
+}
