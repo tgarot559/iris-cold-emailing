@@ -154,6 +154,34 @@ function chiffres(){
   </div>`;
 }
 
+function pilotage(){
+  const p = D.pilotage || {};
+  const h = p.heures || [8.5,17.5];
+  const hh = n => String(Math.floor(n)).padStart(2,"0") + "h" + String(Math.round((n % 1) * 60)).padStart(2,"0");
+  const fait = D.parcours || {};
+  const prochains = (D.prochains || []).map(x => `<tr>
+    <td><b>${esc(x.nom)}</b><span class="petit">${esc(x.fonction || "")}</span></td>
+    <td>${esc(x.entreprise)}<span class="petit">${esc(x.email)}</span></td>
+    <td>${x.etape === 1 ? "Premier message" : "Relance " + x.etape}</td>
+    <td class="num">${/^\d{4}-/.test(x.quand) ? jour(x.quand) : esc(x.quand)}</td>
+    <td>${x.source ? '<span class="petit">' + esc(x.source) + '</span>' : ""}</td>
+  </tr>`).join("");
+  return `<section><h2>Ce qu’IRIS fait pour vous</h2>
+    <div class="fiche">
+      <p><b>Cible travaillée :</b> ${esc(D.cible || "")}</p>
+      <p><b>Expéditeur :</b> ${esc(p.expediteur || D.signataire || "")}${p.adresse ? " · " + esc(p.adresse) : ""}</p>
+      <p><b>Validation :</b> ${esc(p.validation || "")}</p>
+      <p><b>Cadence :</b> départ à ${p.depart_jour ?? "—"} message(s)/jour, montée progressive jusqu’à ${p.plafond_jour ?? "—"} · créneaux ${hh(h[0])}–${hh(h[1])}, du lundi au vendredi.</p>
+      <p><b>Objectif mensuel :</b> jusqu’à ${p.prospects_mois ?? "—"} nouveaux prospects qualifiés.</p>
+      <p class="petit">À ce jour : ${fait.trouves || 0} contact(s) trouvé(s), ${fait.contactes || 0} contacté(s), ${fait.messages || 0} message(s) envoyé(s), ${fait.reponses || 0} réponse(s).</p>
+    </div>
+    <h2 style="margin-top:8px">Ce qui part ensuite : qui, quand et où</h2>
+    ${prochains ? `<div class="tableau"><table><thead><tr><th>Qui</th><th>Entreprise / destination</th><th>Quoi</th><th>Quand</th><th>Origine du contact</th></tr></thead><tbody>${prochains}</tbody></table></div>`
+      : '<p class="vide">Aucun envoi n’est actuellement programmé. Cela peut vouloir dire que les contacts attendent votre validation, que la recherche est en cours ou que les envois sont volontairement fermés.</p>'}
+    <p class="petit">L’adresse indiquée dans “destination” est celle qui recevra le message. Les envois réels restent soumis aux garde-fous de cadence, aux jours ouvrés, aux pauses et à votre mode de validation.</p>
+  </section>`;
+}
+
 function memoire(){
   try { const m = JSON.parse(localStorage.getItem("pm-" + CODE) || "{}"); const vivants = new Set(D.attente.map(a => a.id));
     for (const k of Object.keys(m)) if (k !== "_etat" && !vivants.has(k)) delete m[k];
@@ -238,7 +266,7 @@ function rendre(){
   document.title = D.client + " · IRIS cold emailing";
   document.getElementById("tete").innerHTML = entete();
   const y = scrollY;
-  document.getElementById("page").innerHTML = attente() + chiffres() + reponses() + prevu() + contacts() + journal();
+  document.getElementById("page").innerHTML = pilotage() + attente() + chiffres() + reponses() + prevu() + contacts() + journal();
   scrollTo(0, y);
 }
 async function envoyer(decisions){
