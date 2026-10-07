@@ -148,6 +148,7 @@ def secrets(client):
         data = json.loads(chemin.read_text(encoding="utf-8"))
     return {
         "anthropic": data.get("anthropic") or os.environ.get("ANTHROPIC_API_KEY", ""),
+        "anthropic_espace": data.get("anthropic_espace", ""),
         "mdp": (data.get("clients", {}).get(client, {}) or {}).get("mdp", ""),
         "scrapegraph": data.get("scrapegraph") or os.environ.get("SGAI_API_KEY", ""),
         "scrapegraph_client": (data.get("clients", {}).get(client, {}) or {}).get("scrapegraph", ""),

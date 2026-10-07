@@ -1,0 +1,31 @@
+# Contrôle l'installation réelle (clés, boîtes, accès au web) sans rien envoyer, et écrit verification.md.
+# Se lance à la main (Actions > verification > Run workflow) ou quand le fichier .verifier change.
+name: verification
+on:
+  workflow_dispatch:
+  push:
+    paths: [".verifier"]
+permissions:
+  contents: write
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - run: python -m moteur verifier
+        env:
+          COLDMAIL_SECRETS: ${{ secrets.COLDMAIL_SECRETS }}
+      - name: Enregistrer le rapport
+        if: always()
+        run: |
+          git config user.name "moteur"
+          git config user.email "moteur@users.noreply.github.com"
+          git add verification.md
+          git diff --cached --quiet || git commit -q -m "[CF-Pages-Skip] vérification $(date -u +%FT%H:%MZ)"
+          git pull -q --rebase
+          git push -q

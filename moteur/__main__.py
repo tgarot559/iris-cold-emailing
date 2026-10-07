@@ -7,6 +7,7 @@
   etat <client>                 où en est le client
   importer <client> <csv>       charge une liste de prospects
   decider <client> '<json>'     applique une décision tout de suite
+  verifier                      contrôle les clés, les boîtes et l'accès au web, sans rien envoyer ; écrit verification.md
   site                          réécrit site/espace.html (après une modification du gabarit)
   diagnostic <url> [...]        lit des pages réelles et contrôle les adresses trouvées, sans rien envoyer
   tester-boite <client>         vérifie la connexion à la boîte, sans rien envoyer
@@ -34,7 +35,7 @@ def passage(client, a_blanc=False, recherche=True, ia=None, transport=None, rele
     """Un tour complet pour un client. Les paramètres ia/transport/releve servent aux essais."""
     fiche, etat, sec = charger_fiche(client), charger_etat(client), secrets(client)
     bilan = {"client": client}
-    ia = ia or fabriquer(sec["anthropic"])
+    ia = ia or fabriquer(sec["anthropic"], sec["anthropic_espace"])
 
     for f in _decisions_en_attente(client):
         try:
@@ -170,6 +171,9 @@ def main(argv=None):
                                  ensure_ascii=False))
             except Exception as e:      # un client en panne ne bloque pas les autres
                 print(json.dumps({"client": c, "erreur": f"{type(e).__name__} {e}"}, ensure_ascii=False))
+    elif cmd == "verifier":
+        from . import verification
+        print(verification.rapport())
     elif cmd == "site":
         print("Page écrite :", espace.site())
     elif cmd == "diagnostic":

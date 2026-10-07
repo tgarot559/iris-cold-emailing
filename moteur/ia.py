@@ -12,7 +12,7 @@ class ErreurIA(Exception):
     pass
 
 
-def fabriquer(cle):
+def fabriquer(cle, espace=""):
     """Renvoie une fonction ia(systeme, message, modele, max_tokens) -> texte."""
     if not cle:
         def absente(*a, **k):
@@ -24,6 +24,8 @@ def fabriquer(cle):
                  "messages": [{"role": "user", "content": message}]}
         entetes = {"x-api-key": cle, "anthropic-version": "2023-06-01",
                    "content-type": "application/json"}
+        if espace:                      # clé non rattachée à un espace de travail : il faut le nommer
+            entetes["anthropic-workspace-id"] = espace
         for essai in range(4):
             r = requests.post(URL, headers=entetes, json=corps, timeout=120)
             if r.status_code in (429, 500, 502, 503, 529):
