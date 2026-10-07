@@ -1,12 +1,12 @@
-# Vérification du 2026-10-07 à 22:57
+# Vérification du 2026-10-07 à 23:09
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
 ## Clés
 
 - Clé Claude : présente
-  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header with the ID of the workspace to use. Add the header, or use an API key
-  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header with the ID of the workspace to use. Add the header, or use an API key
+  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfoZWVbXtY1YC2xoMbwYa"}
+  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfoZWX5aeSvVxDU8H4tT3"}
 - Clé ScrapeGraphAI : présente
   - compte : plan Free Plan, 500 crédits restants
 
