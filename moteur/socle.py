@@ -135,29 +135,39 @@ def controler_fiche(fiche):
     return manques
 
 
+def _nom_secret_client(client):
+    """Nom stable du secret GitHub du client, ex. verifamende-flottes -> COLDMAIL_PASSWORD_VERIFAMENDE_FLOTTES."""
+    propre = re.sub(r"[^A-Za-z0-9]+", "_", client or "").strip("_").upper()
+    return "COLDMAIL_PASSWORD_" + propre if propre else ""
+
+
 def secrets(client):
     """Secrets : jamais dans les fichiers du dépôt.
-    Les clés IA peuvent être passées séparément par ANTHROPIC_API_KEY et SGAI_API_KEY.
-    COLDMAIL_SECRETS reste compatible avec l'ancien format JSON.
-    COLDMAIL_CLIENT_PASSWORD accepte un mot de passe de boîte simple pour le client actif."""
+    - ANTHROPIC_API_KEY et SGAI_API_KEY sont communs.
+    - Chaque client peut avoir son propre secret COLDMAIL_PASSWORD_<CLIENT>.
+    - L'ancien JSON COLDMAIL_SECRETS et COLDMAIL_CLIENT_PASSWORD restent compatibles."""
     brut = os.environ.get("COLDMAIL_SECRETS")
     chemin = RACINE / "secrets.json"
     data = {}
+    mot_de_passe_legacy = ""
     if brut:
         try:
             data = json.loads(brut)
         except json.JSONDecodeError:
-            data = {}
+            mot_de_passe_legacy = brut
     elif chemin.exists():
         data = json.loads(chemin.read_text(encoding="utf-8"))
     mdp_json = (data.get("clients", {}).get(client, {}) or {}).get("mdp", "")
-    mdp_env = os.environ.get("COLDMAIL_CLIENT_PASSWORD", "")
+    nom_env = _nom_secret_client(client)
+    mdp_client = os.environ.get(nom_env, "") if nom_env else ""
+    mdp_compat = os.environ.get("COLDMAIL_CLIENT_PASSWORD", "")
     return {
         "anthropic": data.get("anthropic") or os.environ.get("ANTHROPIC_API_KEY", ""),
         "anthropic_espace": data.get("anthropic_espace", ""),
-        "mdp": mdp_json or mdp_env,
+        "mdp": mdp_client or mdp_json or mdp_compat or mot_de_passe_legacy,
         "scrapegraph": data.get("scrapegraph") or os.environ.get("SGAI_API_KEY", ""),
         "scrapegraph_client": (data.get("clients", {}).get(client, {}) or {}).get("scrapegraph", ""),
+        "secret_boite": nom_env,
     }
 
 
