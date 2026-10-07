@@ -1,7 +1,7 @@
 {
   "nom": "VerifAmende Flottes",
   "mode": "validation",
-  "actif": false,
+  "actif": true,
   "expediteur": {
     "prenom": "Thierry",
     "nom": "Garot",
@@ -116,5 +116,6 @@
     ],
     "seuil_rebonds": 0.05
   },
-  "code": "c2gpvctqqmyj"
+  "code": "c2gpvctqqmyj",
+  "envoi": false
 }
