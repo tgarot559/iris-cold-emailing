@@ -1,4 +1,4 @@
-# Vérification du 2026-10-07 à 16:42
+# Vérification du 2026-10-07 à 16:54
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
@@ -21,5 +21,5 @@ Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 - Laurent Vicherd (inactif) : pas d'adresse d'envoi dans la fiche
 - Lionel Segard (inactif) : pas d'adresse d'envoi dans la fiche
 - Lisa · Easy Learning Lisa (inactif) : pas d'adresse d'envoi dans la fiche
-- VerifAmende Flottes (inactif) : mot de passe absent des secrets
+- VerifAmende Flottes (actif, préparation) : mot de passe absent des secrets
 - Willy Foucher · Ice Roll Rollissimo (inactif) : pas d'adresse d'envoi dans la fiche
