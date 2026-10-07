@@ -22,6 +22,8 @@ jobs:
       - run: pip install -q -r requirements.txt
       - run: python -m moteur passage --tous
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SGAI_API_KEY: ${{ secrets.SGAI_API_KEY }}
           COLDMAIL_SECRETS: ${{ secrets.COLDMAIL_SECRETS }}
       - name: Enregistrer l'état
         if: always()
