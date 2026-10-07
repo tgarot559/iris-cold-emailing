@@ -1,0 +1,120 @@
+{
+  "nom": "VerifAmende Flottes",
+  "mode": "validation",
+  "actif": false,
+  "expediteur": {
+    "prenom": "Thierry",
+    "nom": "Garot",
+    "fonction": "Fondateur",
+    "societe": "VerifAmende",
+    "site": "verifamende.fr/flottes",
+    "telephone": "07 56 86 60 00",
+    "mentions": "VerifAmende, service édité par IROKO SAS, 60 rue François 1er, 75008 Paris"
+  },
+  "boite": {
+    "adresse": "thierry.garot@verifamende.fr",
+    "smtp": {
+      "hote": "mail.gandi.net",
+      "port": 587
+    },
+    "imap": {
+      "hote": "mail.gandi.net",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "PME de toute la France, hors Charente-Maritime : 10 à 100 salariés, 5 à 20 véhicules : maintenance, dépannage, second œuvre, services à domicile, soins à domicile, livraison, ambulances, sociétés de VTC et de taxis, propreté, équipes de commerciaux terrain.",
+    "fonctions": [
+      "gérant",
+      "dirigeant",
+      "responsable administratif",
+      "financier",
+      "office manager",
+      "gestionnaire de flotte",
+      "responsable des services généraux",
+      "directeur administratif",
+      "associé",
+      "responsable des partenariats"
+    ],
+    "sources": [],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "registre": {
+      "naf": [
+        "43.21A",
+        "43.22A",
+        "43.22B",
+        "43.32A",
+        "43.34Z",
+        "81.21Z",
+        "81.22Z",
+        "86.90A",
+        "49.32Z",
+        "88.10A",
+        "53.20Z",
+        "33.12Z",
+        "95.22Z"
+      ],
+      "effectifs": [
+        "11",
+        "12",
+        "21"
+      ],
+      "exclure_departements": [
+        "17"
+      ]
+    },
+    "recherches": []
+  },
+  "offre": {
+    "proposition": "Un espace Flottes qui centralise les amendes et forfaits de post-stationnement de l'entreprise, rattache chaque dossier au véhicule et au conducteur, signale les points à contrôler avant d'agir et garde une vue des dossiers en cours.",
+    "preuves": [
+      "Essai de 14 jours gratuits, avec 5 véhicules et 3 analyses",
+      "Aucun prélèvement à la fin de l'essai",
+      "49 € HT par mois jusqu'à 20 véhicules et 10 analyses par mois"
+    ],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement, sans jargon juridique",
+    "interdits": [
+      "garanti",
+      "garantie",
+      "annulation assurée",
+      "cabinet d'avocats",
+      "avocat"
+    ]
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  },
+  "code": "c2gpvctqqmyj"
+}

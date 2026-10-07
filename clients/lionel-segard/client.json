@@ -1,0 +1,114 @@
+{
+  "nom": "Lionel Segard",
+  "mode": "validation",
+  "actif": false,
+  "expediteur": {
+    "prenom": "Lionel",
+    "nom": "Segard",
+    "fonction": "",
+    "societe": "Hôtel Le Rivage",
+    "site": "hotel-chatelaillon.fr",
+    "telephone": "",
+    "mentions": ""
+  },
+  "boite": {
+    "adresse": "",
+    "smtp": {
+      "hote": "",
+      "port": 587
+    },
+    "imap": {
+      "hote": "",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "Entreprises de 20 à 199 salariés du conseil, de l'informatique, de la banque, de l'assurance et de l'industrie pharmaceutique, dont le siège est hors de Charente-Maritime, Deux-Sèvres, Vendée, Charente et Gironde, qui réunissent leurs équipes une à plusieurs fois par an : comités de direction et équipes commerciales qui cherchent un séminaire résidentiel accessible en train, en groupes compatibles avec une salle de 60 m².",
+    "fonctions": [
+      "dirigeant",
+      "directeur des ressources humaines",
+      "assistante de direction",
+      "office manager",
+      "directeur commercial",
+      "chef de projet événementiel",
+      "dirigeant d'agence",
+      "formateur indépendant"
+    ],
+    "sources": [],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "recherches": [],
+    "registre": {
+      "naf": [
+        "70.22Z",
+        "62.01Z",
+        "62.02A",
+        "62.03Z",
+        "64.19Z",
+        "65.11Z",
+        "65.12Z",
+        "66.22Z",
+        "21.10Z",
+        "21.20Z"
+      ],
+      "effectifs": [
+        "12",
+        "21",
+        "22"
+      ],
+      "exclure_departements": [
+        "17",
+        "79",
+        "85",
+        "16",
+        "33"
+      ]
+    }
+  },
+  "offre": {
+    "proposition": "Séminaires d'entreprise à l'Hôtel Le Rivage : 35 chambres, une salle de 60 m² ouverte sur patio, à 15 minutes de La Rochelle et à deux pas de la gare.",
+    "preuves": [
+      "35 chambres",
+      "Une salle de 60 m² ouverte sur patio",
+      "À 15 minutes de La Rochelle, à deux pas de la gare"
+    ],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement",
+    "interdits": []
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  },
+  "code": "vvv2zu6xw9ti",
+  "espace_iris": "xjcmwf4otrmr"
+}

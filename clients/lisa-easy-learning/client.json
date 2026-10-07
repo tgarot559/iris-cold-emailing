@@ -1,0 +1,82 @@
+{
+  "nom": "Lisa · Easy Learning Lisa",
+  "mode": "validation",
+  "actif": false,
+  "expediteur": {
+    "prenom": "Lisa",
+    "nom": "",
+    "fonction": "",
+    "societe": "Easy Learning Lisa",
+    "site": "",
+    "telephone": "",
+    "mentions": ""
+  },
+  "boite": {
+    "adresse": "",
+    "smtp": {
+      "hote": "",
+      "port": 587
+    },
+    "imap": {
+      "hote": "",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "Cadres et indépendants de langue anglaise qui ont des clients, des collègues ou des partenaires français. ; Managers et dirigeants internationaux qui encadrent une équipe en France.",
+    "fonctions": [
+      "manager",
+      "directeur de filiale",
+      "responsable pays",
+      "responsable formation",
+      "responsable mobilité internationale"
+    ],
+    "sources": [],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "recherches": [],
+    "registre": {}
+  },
+  "offre": {
+    "proposition": "Français professionnel pour anglophones : langue, culture et confiance. Des séances construites à partir d'une situation réelle (réunion, présentation, appel client), et une première conversation « Business French Readiness ».",
+    "preuves": [],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement",
+    "interdits": []
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  },
+  "code": "hjshi62xz9sh",
+  "espace_iris": "tmt9spumi6sg"
+}

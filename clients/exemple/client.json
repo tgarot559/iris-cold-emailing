@@ -1,0 +1,86 @@
+{
+  "nom": "Atelier Roue Libre",
+  "mode": "validation",
+  "actif": true,
+  "expediteur": {
+    "prenom": "Camille",
+    "nom": "Verdier",
+    "fonction": "Fondatrice",
+    "societe": "Atelier Roue Libre",
+    "site": "atelier-rouelibre.example",
+    "telephone": "",
+    "mentions": "Atelier Roue Libre SAS, 12 quai des Exemples, 17000 La Rochelle"
+  },
+  "boite": {
+    "adresse": "camille@atelier-rouelibre.example",
+    "smtp": {
+      "hote": "smtp.gmail.com",
+      "port": 587
+    },
+    "imap": {
+      "hote": "imap.gmail.com",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "Artisans et petites entreprises de La Rochelle qui livrent ou interviennent en ville avec des vélos cargo",
+    "fonctions": [
+      "gérant",
+      "dirigeant",
+      "responsable logistique"
+    ],
+    "sources": [
+      "https://annuaire-artisans.example/la-rochelle/livraison-velo"
+    ],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "recherches": [],
+    "registre": {}
+  },
+  "offre": {
+    "proposition": "Entretien sur place des vélos cargo professionnels, à l'atelier ou chez le client, avec un vélo de prêt pendant l'immobilisation.",
+    "preuves": [
+      "Atelier installé à La Rochelle",
+      "Intervention sous 48 heures"
+    ],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement",
+    "interdits": [
+      "leader",
+      "révolutionnaire"
+    ]
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  }
+}

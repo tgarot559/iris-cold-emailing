@@ -1,0 +1,99 @@
+{
+  "nom": "Laurent Vicherd",
+  "mode": "validation",
+  "actif": false,
+  "expediteur": {
+    "prenom": "Laurent",
+    "nom": "Vicherd",
+    "fonction": "",
+    "societe": "",
+    "site": "",
+    "telephone": "",
+    "mentions": ""
+  },
+  "boite": {
+    "adresse": "",
+    "smtp": {
+      "hote": "",
+      "port": 587
+    },
+    "imap": {
+      "hote": "",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "Agences qui répondent à des compétitions et présentent des films à leurs clients, en France. ; Maisons de production de films publicitaires qui répondent à des appels d'offres avec une note d'intention.",
+    "fonctions": [
+      "directeur de création",
+      "directeur artistique",
+      "responsable du développement commercial",
+      "producteur en agence",
+      "dirigeant d'agence",
+      "producteur",
+      "producteur exécutif",
+      "réalisateur",
+      "directeur marketing",
+      "directeur de la communication"
+    ],
+    "sources": [],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "recherches": [],
+    "registre": {
+      "naf": [
+        "73.11Z",
+        "59.11B"
+      ],
+      "effectifs": [
+        "03",
+        "11",
+        "12",
+        "21",
+        "22"
+      ]
+    }
+  },
+  "offre": {
+    "proposition": "Films concept pour les agences : donner à voir une idée de campagne avant le tournage, pour un pitch, une compétition ou un appel d'offres.",
+    "preuves": [],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement",
+    "interdits": []
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  },
+  "code": "gbw3qzqef6dp",
+  "espace_iris": "wtzrar1vjutx"
+}

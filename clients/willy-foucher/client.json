@@ -1,0 +1,87 @@
+{
+  "nom": "Willy Foucher · Ice Roll Rollissimo",
+  "mode": "validation",
+  "actif": false,
+  "expediteur": {
+    "prenom": "Willy",
+    "nom": "Foucher",
+    "fonction": "",
+    "societe": "Ice Roll Rollissimo",
+    "site": "",
+    "telephone": "",
+    "mentions": ""
+  },
+  "boite": {
+    "adresse": "",
+    "smtp": {
+      "hote": "",
+      "port": 587
+    },
+    "imap": {
+      "hote": "",
+      "port": 993
+    }
+  },
+  "cible": {
+    "description": "Agences de 5 à 100 salariés dans votre zone d'intervention. Objectif : 100 à 150 agences suivies dans la durée. ; Entreprises de 100 à 5 000 salariés qui organisent des événements internes.",
+    "fonctions": [
+      "dirigeant",
+      "chef de projet",
+      "event manager",
+      "directeur ou responsable des ressources humaines",
+      "responsable cse",
+      "responsable qualité de vie au travail",
+      "directeur ou responsable de la communication",
+      "responsable de marque",
+      "office manager",
+      "responsable de l'environnement de travail"
+    ],
+    "sources": [],
+    "sites": [],
+    "accepter_generiques": true,
+    "accepter_webmails": false,
+    "max_par_entreprise": 1,
+    "prospects_par_mois": 100,
+    "recherches": [],
+    "registre": {}
+  },
+  "offre": {
+    "proposition": "Une animation de glaces en rouleaux préparées sur une plancha froide, devant les invités, pour les événements d'entreprise. On ne vend pas une glace : on vend un moment qui attire, rassemble et laisse un souvenir.",
+    "preuves": [],
+    "appel": "un échange de dix minutes au téléphone",
+    "ton": "simple, direct, respectueux, vouvoiement",
+    "interdits": []
+  },
+  "sequence": {
+    "delais_jours": [
+      0,
+      3,
+      7
+    ],
+    "cloture_jours": 7
+  },
+  "cadence": {
+    "depart_par_jour": 5,
+    "pas_par_semaine": 5,
+    "plafond_par_jour": 30,
+    "par_passage": 2,
+    "ecart_minutes": [
+      9,
+      26
+    ],
+    "heures": [
+      8.5,
+      17.5
+    ],
+    "jours": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seuil_rebonds": 0.05
+  },
+  "code": "yv5vae7kcm6u",
+  "espace_iris": "21tnw7p6lhzk"
+}
