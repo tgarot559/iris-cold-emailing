@@ -1,0 +1,24 @@
+{
+ "version": 1,
+ "demarrage": null,
+ "pause": false,
+ "motif_pause": "",
+ "entreprises": {},
+ "prospects": {},
+ "messages": [],
+ "opposition": {},
+ "journal": [
+  {
+   "date": "2026-10-07T22:33:19+02:00",
+   "type": "erreur",
+   "detail": "registre des entreprises injoignable (France entière)"
+  }
+ ],
+ "boite": {
+  "dernier_uid": null,
+  "prochain_envoi_apres": null
+ },
+ "registre": {},
+ "recherches_faites": {},
+ "sources_lues": {}
+}

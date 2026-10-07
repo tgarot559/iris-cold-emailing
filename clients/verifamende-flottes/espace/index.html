@@ -1,0 +1,306 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>body{margin:0}[hidden]{display:none!important}</style></head><body><title>VerifAmende Flottes · IRIS cold emailing</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* Charte des espaces IRIS : bandeau bleu, accent orange, Sora pour les titres, DM Sans pour le texte.
+   Une colonne de lecture, du plus urgent au plus détaillé. */
+:root {
+  --bg: #F5F7FB; --surface: #FFFFFF; --fg: #14233F; --muted: #4A5A75; --line: #D3DDED;
+  --brand: #0F3A7D; --head-bg: #0F3A7D; --head-fg: #FFFFFF; --head-muted: #DCE6F5;
+  --accent: #EA8A2F; --accent-ink: #14233F; --tile: #EAF0FA;
+  --ok: #1B6E45; --ok-bg: #E2F3EA; --wait: #8A4B06; --wait-bg: #FFF0DC;
+  --info: #1C55AD; --info-bg: #E4EDFB; --bad: #A3231C; --bad-bg: #FBE7E5;
+  --display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --body: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1424; --surface: #121E33; --fg: #E8EEF8; --muted: #A9B8D0; --line: #2A3B57;
+    --brand: #9DBDF5; --head-bg: #0A2A5C; --head-fg: #FFFFFF; --head-muted: #C9D8F0;
+    --accent: #F0A050; --accent-ink: #14233F; --tile: #18294A;
+    --ok: #6FD3A0; --ok-bg: #14382A; --wait: #F5C07A; --wait-bg: #3A2A12;
+    --info: #8DB8FF; --info-bg: #17305A; --bad: #FF9A91; --bad-bg: #44201D;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1424; --surface: #121E33; --fg: #E8EEF8; --muted: #A9B8D0; --line: #2A3B57;
+  --brand: #9DBDF5; --head-bg: #0A2A5C; --head-fg: #FFFFFF; --head-muted: #C9D8F0;
+  --accent: #F0A050; --accent-ink: #14233F; --tile: #18294A;
+  --ok: #6FD3A0; --ok-bg: #14382A; --wait: #F5C07A; --wait-bg: #3A2A12;
+  --info: #8DB8FF; --info-bg: #17305A; --bad: #FF9A91; --bad-bg: #44201D;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; }
+.head { background: var(--head-bg); color: var(--head-fg); }
+.head .wrap { padding-block: 28px 30px; display: flex; flex-direction: column; gap: 14px; }
+.brandrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.brand { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: 3px; }
+.brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.brand small { font-family: var(--body); font-weight: 500; font-size: 14px; letter-spacing: 0; color: var(--head-muted); }
+.maj { font-size: 14px; color: var(--head-muted); }
+.head h1 { font-size: clamp(24px, 4vw, 32px); font-weight: 700; line-height: 1.2; }
+.head p { color: var(--head-muted); max-width: 60ch; }
+.head .phrase { color: var(--head-fg); font-size: 18px; }
+.head .phrase b { color: var(--accent); }
+.head .exemple { color: var(--wait); max-width: none; }
+.page { padding-block: 24px 56px; display: flex; flex-direction: column; gap: 28px; }
+h2 { font-size: 20px; color: var(--brand); }
+.ligne { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.petit { color: var(--muted); font-size: 14px; }
+.pastille { display: inline-block; border-radius: 999px; padding: 3px 12px; font-size: 13.5px; font-weight: 700; white-space: nowrap; }
+.p-ok { background: var(--ok-bg); color: var(--ok); } .p-alerte, .p-orange { background: var(--wait-bg); color: var(--wait); }
+.p-stop { background: var(--bad-bg); color: var(--bad); } .p-neutre { background: var(--tile); color: var(--fg); }
+.exemple { background: var(--wait-bg); color: var(--wait); padding: 10px 14px; border-radius: 8px; font-weight: 700; }
+.jauge { height: 10px; background: rgba(255,255,255,.22); border-radius: 99px; overflow: hidden; max-width: 420px; }
+.jauge i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.parcours { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.parcours div { display: flex; flex-direction: column; gap: 2px; background: var(--tile); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.parcours strong { font-family: var(--display); font-size: 24px; color: var(--brand); font-variant-numeric: tabular-nums; }
+.parcours span { color: var(--muted); font-size: 14px; }
+section { display: flex; flex-direction: column; gap: 12px; }
+.fiche { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fiche.attention { border-left: 4px solid var(--accent); }
+.qui { font-weight: 700; }
+details { border-top: 1px solid var(--line); padding-top: 10px; }
+summary { cursor: pointer; font-weight: 700; color: var(--brand); }
+button:focus-visible, summary:focus-visible, textarea:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.lettre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--bg); border-radius: 8px; padding: 12px 14px; margin-top: 8px; }
+.objet { font-weight: 700; display: block; margin-bottom: 6px; }
+blockquote { margin: 0; padding-left: 12px; border-left: 3px solid var(--line); color: var(--muted); font-size: 15px; overflow-wrap: anywhere; }
+.avis { color: var(--wait); font-weight: 700; font-size: 15px; }
+.vide { color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; padding: 18px; }
+.filtres { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtres button { font: 700 14px var(--body); padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.filtres button[aria-pressed="true"] { background: var(--brand); color: var(--surface); border-color: var(--brand); }
+#cherche { font: inherit; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); width: 100%; max-width: 320px; }
+.tableau { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); font-weight: 700; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td .petit { display: block; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+ul.simple { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+ul.simple li { display: flex; gap: 12px; flex-wrap: wrap; }
+ul.simple time { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 8.5em; }
+a { color: var(--brand); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; border-top: 1px solid var(--line); padding-top: 12px; }
+.bouton { font: inherit; font-weight: 700; border-radius: 8px; padding: 11px 18px; min-height: 44px; cursor: pointer; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); }
+.bouton.second { background: var(--surface); color: var(--fg); border-color: var(--brand); }
+.bouton.discret { background: var(--surface); color: var(--fg); border-color: var(--line); }
+.bouton:hover { border-color: var(--brand); }
+.bouton[disabled] { opacity: .6; cursor: default; }
+.head .bouton.discret { background: transparent; color: var(--head-fg); border-color: var(--head-muted); }
+.note-ok { color: var(--ok); background: var(--ok-bg); padding: 10px 14px; border-radius: 8px; font-weight: 700; }
+.note-ko { color: var(--bad); background: var(--bad-bg); padding: 10px 14px; border-radius: 8px; font-weight: 700; }
+.head .note-ok { max-width: 60ch; }
+.saisie { width: 100%; font: inherit; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); margin-top: 8px; }
+textarea.saisie { min-height: 11em; resize: vertical; }
+label.petit { display: block; margin-top: 8px; }
+</style>
+
+<div class="head"><div class="wrap entete" id="tete"></div></div>
+<div class="page wrap" id="page"></div>
+
+<script>
+let D = {"client": "VerifAmende Flottes", "signataire": "Thierry Garot", "boite": "thierry.garot@verifamende.fr", "mode": "validation", "maj": "2026-10-07T22:33:19+02:00", "etat": "preparation", "motif": "", "demarrage": null, "jour": {"partis": 0, "plafond": 5, "max": 30}, "parcours": {"trouves": 0, "contactes": 0, "messages": 0, "reponses": 0, "interesses": 0, "arrets": 0, "invalides": 0}, "prets": 0, "attente": [], "reponses": [], "contacts": [], "prevu": [], "journal": [{"date": "2026-10-07T22:33:19+02:00", "type": "erreur", "detail": "registre des entreprises injoignable (France entière)"}], "cible": "PME de toute la France, hors Charente-Maritime : 10 à 100 salariés, 5 à 20 véhicules : maintenance, dépannage, second œuvre, services à domicile, soins à domicile, livraison, ambulances, sociétés de VTC et de taxis, propreté, équipes de commerciaux terrain.", "sequence": [0, 3, 7], "exemple": false};
+let LIVE = false, EDITION = null, ERREUR = "";
+const CODE = (new URLSearchParams(location.search).get("c") || location.pathname.split("/").filter(Boolean).pop() || "").toLowerCase();
+const LIB = {nouveau:["Trouvé","p-neutre"],a_valider:["Attend votre accord","p-orange"],pret:["Prêt à partir","p-neutre"],
+  en_sequence:["En cours","p-ok"],repondu:["A répondu","p-ok"],termine:["Sans réponse","p-neutre"],
+  stop:["Ne plus contacter","p-stop"],rebond:["Adresse invalide","p-stop"],ecarte:["Écarté","p-neutre"]};
+const INT = {interesse:["Intéressé","p-ok"],question:["Pose une question","p-ok"],plus_tard:["Plus tard","p-alerte"],
+  pas_interesse:["Pas intéressé","p-neutre"],mauvais_contact:["Autre interlocuteur","p-alerte"],stop:["Demande d'arrêt","p-stop"],
+  autre:["À lire","p-neutre"],a_lire:["À lire","p-neutre"]};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const jour = s => s ? new Date(s).toLocaleDateString("fr-FR",{weekday:"short",day:"numeric",month:"short"}) : "";
+const heure = s => s ? new Date(s).toLocaleString("fr-FR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) : "";
+const pl = (n, un, des) => n + " " + (n > 1 ? des : un);
+const pastille = ([t, c]) => `<span class="pastille ${c}">${t}</span>`;
+
+function entete(){
+  const e = {marche:["En marche","p-ok"],pause:["En pause","p-alerte"],arret:["À l'arrêt","p-neutre"],preparation:["En préparation","p-alerte"]}[D.etat];
+  const j = D.jour;
+  let phrase;
+  if (D.etat === "pause") phrase = `Les envois sont suspendus : ${esc(D.motif)}.`;
+  else if (D.etat === "preparation") phrase = "La recherche de contacts et la rédaction des messages sont en cours. Les envois commenceront dès que votre adresse d'envoi sera prête.";
+  else if (D.etat === "arret") phrase = "Rien ne part pour l'instant. La prospection démarre dès que la fiche est complète et activée.";
+  else if (!D.demarrage) phrase = "Tout est prêt. Les premiers messages partent au prochain créneau d'envoi.";
+  else phrase = `Aujourd'hui, <b>${pl(j.partis,"message est parti","messages sont partis")}</b> sur ${j.plafond} possibles.`;
+  const attente = D.attente.length ? ` <b>${pl(D.attente.length,"contact attend","contacts attendent")} votre accord.</b>` : "";
+  const m = LIVE ? memoire() : {};
+  return `<div class="brandrow"><div class="brand"><span class="dot"></span>IRIS <small>Prospection cold emailing</small></div><div class="maj">Mis à jour ${heure(D.maj)}</div></div>
+    ${D.exemple ? '<p class="exemple">Exemple : toutes les personnes et entreprises de cette page sont inventées.</p>' : ""}
+    <div>${pastille(e)}</div>
+    <h1>${esc(D.client)}</h1>
+    <p class="phrase">${phrase}${attente}</p>
+    ${D.etat === "marche" ? `<div class="jauge" role="img" aria-label="${j.partis} sur ${j.plafond}"><i style="width:${Math.min(100, j.plafond ? j.partis / j.plafond * 100 : 0)}%"></i></div>
+    <p>Le nombre de messages par jour monte petit à petit, jusqu'à ${j.max}. C'est ce qui protège votre adresse.</p>` : ""}
+    <p>Messages signés ${esc(D.signataire)}${D.boite ? ", envoyés depuis " + esc(D.boite) : ""} · ${D.mode === "validation" ? "rien ne part sans accord" : "envoi sans validation préalable"}</p>
+    ${LIVE && D.etat !== "arret" && D.etat !== "preparation" ? (m._etat ? `<p class="note-ok">${esc(m._etat.texte)}</p>`
+      : `<div><button class="bouton ${D.etat === "pause" ? "" : "discret"}" data-act="${D.etat === "pause" ? "reprise" : "pause"}">${D.etat === "pause" ? "Reprendre les envois" : "Mettre les envois en pause"}</button></div>`) : ""}`;
+}
+function chiffres(){
+  const p = D.parcours;
+  return `<div class="parcours">
+    <div><strong>${p.trouves}</strong><span>${p.trouves > 1 ? "contacts trouvés" : "contact trouvé"}</span></div>
+    <div><strong>${p.contactes}</strong><span>${p.contactes > 1 ? "contactés" : "contacté"}</span></div>
+    <div><strong>${p.reponses}</strong><span>${p.reponses > 1 ? "réponses" : "réponse"}</span></div>
+    <div><strong>${p.interesses}</strong><span>${p.interesses > 1 ? "intéressés" : "intéressé"}</span></div>
+  </div>`;
+}
+
+function memoire(){
+  try { const m = JSON.parse(localStorage.getItem("pm-" + CODE) || "{}"); const vivants = new Set(D.attente.map(a => a.id));
+    for (const k of Object.keys(m)) if (k !== "_etat" && !vivants.has(k)) delete m[k];
+    if (m._etat && m._etat.vu !== D.etat) delete m._etat;
+    return m; } catch (e) { return {}; }
+}
+function retenir(cle, valeur){ try { const m = memoire(); m[cle] = valeur; localStorage.setItem("pm-" + CODE, JSON.stringify(m)); } catch (e) {} }
+
+function attente(){
+  if (!D.attente.length) return "";
+  const fait = LIVE ? memoire() : {};
+  const reste = D.attente.filter(a => !fait[a.id]);
+  return `<section id="attente"><h2>Ce qui attend votre accord</h2>
+    <p class="petit">${LIVE ? "Lisez chaque message, puis validez ou corrigez. Rien ne part sans votre accord."
+      : "Lisez, puis dites simplement dans la conversation : « je valide tout », « je refuse Untel » ou « change telle phrase »."}</p>
+    ${ERREUR ? `<p class="note-ko">${esc(ERREUR)}</p>` : ""}
+    ${LIVE && reste.length > 1 && !EDITION ? `<div><button class="bouton" data-act="valider" data-id="tous">Tout valider (${reste.length})</button></div>` : ""}
+    ${D.attente.map(a => { const ed = EDITION === a.id; return `<article class="fiche attention">
+      <div><span class="qui">${esc(a.nom)}</span>${a.fonction ? ", " + esc(a.fonction) : ""} · ${esc(a.entreprise)}
+        <span class="petit" style="display:block">${esc(a.email)}${a.source ? " · adresse lue sur " + esc(a.source) : ""}</span></div>
+      ${a.accroche ? `<blockquote>Lu sur son site : « ${esc(a.accroche)} »</blockquote>` : ""}
+      ${a.alertes.map(x => `<p class="avis">À vérifier : ${esc(x)}</p>`).join("")}
+      ${a.messages.map((m, i) => `<details ${i && !ed ? "" : "open"}><summary>${m.etape === 1 ? "Premier message" : "Relance, " + m.jour + " jours après"}</summary>
+        ${ed ? `${m.etape === 1 ? `<label class="petit" for="o-${a.id}">Objet</label><input class="saisie" id="o-${a.id}" value="${esc(m.objet)}" maxlength="120">` : ""}
+          <label class="petit" for="c-${a.id}-${m.etape}">Texte du message</label><textarea class="saisie" id="c-${a.id}-${m.etape}" maxlength="2000">${esc(m.corps)}</textarea>`
+        : `<div class="lettre">${m.objet ? `<span class="objet">${esc(m.objet)}</span>` : ""}${esc(m.corps)}</div>`}</details>`).join("")}
+      ${!LIVE ? "" : fait[a.id] ? `<p class="note-ok">${esc(fait[a.id])}</p>`
+        : ed ? `<div class="actions"><button class="bouton" data-act="enregistrer" data-id="${a.id}">Enregistrer et valider</button><button class="bouton discret" data-act="annuler">Annuler</button></div>
+          <p class="petit">La signature et la mention d'arrêt sont ajoutées automatiquement sous votre texte.</p>`
+        : `<div class="actions"><button class="bouton" data-act="valider" data-id="${a.id}">Valider</button><button class="bouton second" data-act="corriger" data-id="${a.id}">Corriger</button><button class="bouton discret" data-act="refuser" data-id="${a.id}">Ne pas contacter</button></div>`}
+    </article>`; }).join("")}</section>`;
+}
+
+function reponses(){
+  return `<section><h2>Les réponses reçues</h2>
+    ${D.reponses.length ? D.reponses.map(r => `<article class="fiche">
+      <div class="ligne"><span class="qui">${esc(r.nom)}</span><span>${esc(r.entreprise)}</span>${pastille(INT[r.intention] || INT.autre)}<span class="petit">${heure(r.date)}</span></div>
+      ${r.resume ? `<p>${esc(r.resume)}</p>` : ""}
+      <blockquote>${esc(r.extrait)}</blockquote>
+      ${r.intention === "stop" ? '<p class="petit">Plus aucun message ne lui sera envoyé.</p>' : `<p class="petit">Répondez-lui vous-même depuis votre boîte : ${esc(r.email)}</p>`}</article>`).join("")
+      : '<p class="vide">Pas encore de réponse. Dès qu\'une personne répond, ses relances s\'arrêtent et son message apparaît ici.</p>'}
+  </section>`;
+}
+
+function prevu(){
+  const lignes = D.prevu.map(x => `<li><time>${jour(x.jour)}</time><span>${pl(x.relances,"relance","relances")}</span></li>`);
+  if (D.prets) lignes.unshift(`<li><time>Dès que possible</time><span>${pl(D.prets,"premier message prêt","premiers messages prêts")} à partir</span></li>`);
+  return `<section><h2>Ce qui est prévu</h2>${lignes.length ? `<ul class="simple">${lignes.join("")}</ul>` : '<p class="vide">Rien de programmé pour le moment.</p>'}
+    <p class="petit">Chaque contact reçoit au plus ${D.sequence.length} messages${D.sequence.length > 1 ? " (jours " + D.sequence.join(", ") + ")" : ""}. Envois du lundi au vendredi, aux heures de bureau.</p></section>`;
+}
+
+let filtre = "tous";
+function lignesContacts(){
+  const q = (document.getElementById("cherche")?.value || "").toLowerCase();
+  const liste = D.contacts.filter(c => (filtre === "tous" || c.statut === filtre) && (!q || (c.nom + c.entreprise + c.email).toLowerCase().includes(q)));
+  return liste.length ? liste.map(c => `<tr>
+    <td><b>${esc(c.nom)}</b><span class="petit">${esc(c.fonction)}</span></td>
+    <td>${esc(c.entreprise)}<span class="petit">${esc(c.email)}</span></td>
+    <td>${pastille(LIB[c.statut] || [c.statut,"p-neutre"])}</td>
+    <td class="num">${c.etape} / ${c.sur}</td>
+    <td class="num">${c.prochain ? jour(c.prochain) : c.dernier ? "<span class='petit'>dernier : " + jour(c.dernier) + "</span>" : ""}</td></tr>`).join("")
+    : '<tr><td colspan="5" class="petit">Aucun contact ne correspond.</td></tr>';
+}
+function contacts(){
+  const presents = [...new Set(D.contacts.map(c => c.statut))];
+  return `<section><h2>Vos contacts</h2>
+    <div class="ligne"><input id="cherche" type="search" placeholder="Chercher un nom, une entreprise" aria-label="Chercher un contact">
+    <div class="filtres" id="filtres"><button data-f="tous" aria-pressed="true">Tous (${D.contacts.length})</button>
+      ${presents.map(s => `<button data-f="${s}" aria-pressed="false">${(LIB[s] || [s])[0]} (${D.contacts.filter(c => c.statut === s).length})</button>`).join("")}</div></div>
+    <div class="tableau"><table><thead><tr><th>Personne</th><th>Entreprise</th><th>Où en est-on</th><th>Messages</th><th>Prochain</th></tr></thead>
+    <tbody id="corps">${lignesContacts()}</tbody></table></div>
+    <p class="petit">${D.parcours.arrets ? pl(D.parcours.arrets,"personne a demandé","personnes ont demandé") + " à ne plus être contactée : c'est définitif. " : ""}${D.parcours.invalides ? pl(D.parcours.invalides,"adresse invalide retirée","adresses invalides retirées") + ". " : ""}Nous ne traçons ni les ouvertures ni les clics : seules les vraies réponses comptent.</p></section>`;
+}
+
+function journal(){
+  if (!D.journal.length) return "";
+  return `<section><h2>Journal</h2><ul class="simple">${D.journal.map(j => `<li><time>${heure(j.date)}</time><span>${esc(j.detail)}</span></li>`).join("")}</ul></section>`;
+}
+
+const DELAI = "Pris en compte au prochain passage, dans la demi-heure.";
+function rendre(){
+  document.title = D.client + " · IRIS cold emailing";
+  document.getElementById("tete").innerHTML = entete();
+  const y = scrollY;
+  document.getElementById("page").innerHTML = attente() + chiffres() + reponses() + prevu() + contacts() + journal();
+  scrollTo(0, y);
+}
+async function envoyer(decisions){
+  const r = await fetch("/api/espace", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({code: CODE, decisions})});
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).erreur || "refus");
+}
+async function agir(b){
+  const act = b.dataset.act, id = b.dataset.id;
+  if (act === "corriger") { EDITION = id; ERREUR = ""; return rendre(); }
+  if (act === "annuler") { EDITION = null; ERREUR = ""; return rendre(); }
+  let decisions = [], marquer = () => {};
+  if (act === "valider" && id === "tous") {
+    const m = memoire(), ids = D.attente.filter(a => !m[a.id]).map(a => a.id);
+    decisions = ids.map(i => ({action: "valider", prospect: i}));
+    marquer = () => ids.forEach(i => retenir(i, "Validé. " + DELAI));
+  } else if (act === "valider") { decisions = [{action: "valider", prospect: id}]; marquer = () => retenir(id, "Validé. " + DELAI); }
+  else if (act === "refuser") { decisions = [{action: "refuser", prospect: id, motif: "écarté depuis l'espace"}]; marquer = () => retenir(id, "Cette personne ne sera pas contactée."); }
+  else if (act === "enregistrer") {
+    const a = D.attente.find(x => x.id === id);
+    for (const m of a.messages) {
+      const corps = document.getElementById(`c-${id}-${m.etape}`).value.trim();
+      const objet = m.etape === 1 ? document.getElementById("o-" + id).value.trim() : "";
+      if (!corps || (m.etape === 1 && !objet)) { ERREUR = "Un message ou son objet est vide."; return rendre(); }
+      if (corps !== m.corps || objet !== m.objet) {
+        const d = {action: "modifier", prospect: id, etape: m.etape, corps};
+        if (m.etape === 1) d.objet = objet;
+        decisions.push(d); m.corps = corps; if (m.etape === 1) m.objet = objet;
+      }
+    }
+    decisions.push({action: "valider", prospect: id});
+    marquer = () => { retenir(id, "Corrigé et validé. " + DELAI); EDITION = null; };
+  } else if (act === "pause" || act === "reprise") {
+    decisions = [act === "pause" ? {action: "pause", motif: "demandée depuis l'espace"} : {action: "reprise"}];
+    marquer = () => retenir("_etat", {vu: D.etat, texte: (act === "pause" ? "Pause demandée. " : "Reprise demandée. ") + DELAI});
+  } else return;
+  b.disabled = true;
+  try { await envoyer(decisions); marquer(); ERREUR = ""; }
+  catch (e) { ERREUR = "Votre décision n'a pas été enregistrée. Réessayez dans un instant."; }
+  rendre();
+}
+async function charger(){
+  try {
+    const r = await fetch("/api/espace?code=" + CODE, {cache: "no-store"});
+    if (!r.ok) throw new Error();
+    D = await r.json(); LIVE = true; rendre();
+  } catch (e) {
+    if (!D) document.getElementById("page").innerHTML = '<p class="vide">Cette page de suivi est introuvable. Vérifiez le lien qui vous a été remis.</p>';
+  }
+}
+const page = document.getElementById("page");
+page.addEventListener("input", e => { if (e.target.id === "cherche") document.getElementById("corps").innerHTML = lignesContacts(); });
+document.addEventListener("click", e => {
+  const f = e.target.closest("#filtres button");
+  if (f) { filtre = f.dataset.f; document.querySelectorAll("#filtres button").forEach(x => x.setAttribute("aria-pressed", x === f)); document.getElementById("corps").innerHTML = lignesContacts(); return; }
+  const b = e.target.closest("button[data-act]");
+  if (b) agir(b);
+});
+if (D) rendre();
+else if (/^[a-z0-9]{12}$/.test(CODE)) {
+  page.innerHTML = '<p class="vide">Chargement de votre suivi…</p>';
+  charger();
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && !EDITION) charger(); });
+} else page.innerHTML = '<p class="vide">Ce lien est incomplet. Utilisez le lien qui vous a été remis.</p>';
+</script>
+</body></html>
