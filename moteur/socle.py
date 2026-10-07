@@ -144,7 +144,8 @@ def _nom_secret_client(client):
 def secrets(client):
     """Secrets : jamais dans les fichiers du dépôt.
     - ANTHROPIC_API_KEY et SGAI_API_KEY sont communs.
-    - Chaque client peut avoir son propre secret COLDMAIL_PASSWORD_<CLIENT>.
+    - COLDMAIL_MAIL_PASSWORDS peut contenir un JSON {"client-id":"mot-de-passe", ...} : aucun changement de code à l'ajout d'un client.
+    - Un secret COLDMAIL_PASSWORD_<CLIENT> reste possible pour les clients déjà configurés.
     - L'ancien JSON COLDMAIL_SECRETS et COLDMAIL_CLIENT_PASSWORD restent compatibles."""
     brut = os.environ.get("COLDMAIL_SECRETS")
     chemin = RACINE / "secrets.json"
@@ -158,13 +159,21 @@ def secrets(client):
     elif chemin.exists():
         data = json.loads(chemin.read_text(encoding="utf-8"))
     mdp_json = (data.get("clients", {}).get(client, {}) or {}).get("mdp", "")
+    coffre = {}
+    brut_coffre = os.environ.get("COLDMAIL_MAIL_PASSWORDS", "")
+    if brut_coffre:
+        try:
+            coffre = json.loads(brut_coffre)
+        except json.JSONDecodeError:
+            coffre = {}
+    mdp_coffre = coffre.get(client, "") if isinstance(coffre, dict) else ""
     nom_env = _nom_secret_client(client)
     mdp_client = os.environ.get(nom_env, "") if nom_env else ""
     mdp_compat = os.environ.get("COLDMAIL_CLIENT_PASSWORD", "")
     return {
         "anthropic": data.get("anthropic") or os.environ.get("ANTHROPIC_API_KEY", ""),
         "anthropic_espace": data.get("anthropic_espace", ""),
-        "mdp": mdp_client or mdp_json or mdp_compat or mot_de_passe_legacy,
+        "mdp": mdp_client or mdp_coffre or mdp_json or mdp_compat or mot_de_passe_legacy,
         "scrapegraph": data.get("scrapegraph") or os.environ.get("SGAI_API_KEY", ""),
         "scrapegraph_client": (data.get("clients", {}).get(client, {}) or {}).get("scrapegraph", ""),
         "secret_boite": nom_env,
