@@ -39,6 +39,7 @@ def donnees(fiche, etat):
         contacts.append({
             "nom": (p["prenom"] + " " + p["nom"]).strip() or "Adresse générale",
             "fonction": p["fonction"], "entreprise": p["entreprise"], "email": p["email"], "site": p["site"],
+            "source": p.get("source_url") or p.get("site") or "",
             "statut": p["statut"], "etape": len(partis), "sur": len(delais),
             "dernier": max((m["envoye_le"] for m in partis), default=None), "prochain": echeance,
         })
@@ -59,6 +60,22 @@ def donnees(fiche, etat):
     contacts.sort(key=lambda c: (ordre.get(c["statut"], 9), c["entreprise"].lower()))
     reponses.sort(key=lambda r: r["date"], reverse=True)
     e = fiche["expediteur"]
+    prochains = []
+    for p, m, premier in envoi.a_envoyer(fiche, etat, now):
+        if len(prochains) >= 12:
+            break
+        quand = "Prochain créneau d'envoi"
+        if premier:
+            d = lire_date(premier["envoye_le"]).date() + timedelta(days=delais[m["etape"] - 1])
+            while d.weekday() not in fiche["cadence"]["jours"] or d < now.date():
+                d += timedelta(days=1)
+            quand = d.isoformat()
+        prochains.append({
+            "nom": (p["prenom"] + " " + p["nom"]).strip() or "Adresse générale",
+            "fonction": p.get("fonction", ""), "entreprise": p["entreprise"], "email": p["email"],
+            "etape": m["etape"], "objet": m.get("objet", ""), "quand": quand,
+            "source": p.get("source_url") or p.get("site") or "",
+        })
     return {
         "client": fiche["nom"] or fiche["_id"], "signataire": f"{e['prenom']} {e['nom']}".strip(),
         "boite": fiche["boite"]["adresse"], "mode": fiche["mode"], "maj": iso(now),
@@ -76,6 +93,17 @@ def donnees(fiche, etat):
         "prevu": [{"jour": j, "relances": n} for j, n in sorted(prevu.items())[:6]],
         "journal": [j for j in etat["journal"] if j["type"] != "decision"][-12:][::-1],
         "cible": fiche["cible"]["description"], "sequence": delais,
+        "pilotage": {
+            "expediteur": f"{e['prenom']} {e['nom']}".strip(),
+            "adresse": fiche["boite"]["adresse"],
+            "validation": "Validation requise avant tout premier envoi" if fiche["mode"] == "validation" else "Envoi autonome",
+            "jours": fiche["cadence"]["jours"],
+            "heures": fiche["cadence"]["heures"],
+            "depart_jour": fiche["cadence"]["depart_par_jour"],
+            "plafond_jour": fiche["cadence"]["plafond_par_jour"],
+            "prospects_mois": fiche["cible"]["prospects_par_mois"],
+        },
+        "prochains": prochains,
     }
 
 
