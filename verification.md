@@ -1,12 +1,12 @@
-# Vérification du 2026-10-07 à 23:09
+# Vérification du 2026-10-07 à 23:16
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
 ## Clés
 
 - Clé Claude : présente
-  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfoZWVbXtY1YC2xoMbwYa"}
-  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfoZWX5aeSvVxDU8H4tT3"}
+  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cfoa6NsBFd7SPxBL7WGbb"}
+  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cfoa6QPD3DcSRvzojfQ9G"}
 - Clé ScrapeGraphAI : présente
   - compte : plan Free Plan, 500 crédits restants
 
