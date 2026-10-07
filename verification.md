@@ -1,13 +1,14 @@
-# Vérification du 2026-10-07 à 16:54
+# Vérification du 2026-10-07 à 18:24
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
 ## Clés
 
-- Clé Claude : ABSENTE
-  - modèle de extraction (claude-haiku-4-5-20251001) : clé absente
-  - modèle de redaction (claude-sonnet-5-5) : clé absente
-- Clé ScrapeGraphAI : absente
+- Clé Claude : présente
+  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 401 : {"type":"error","error":{"type":"authentication_error","message":"API key is invalid."},"request_id":null}
+  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 401 : {"type":"error","error":{"type":"authentication_error","message":"API key is invalid."},"request_id":null}
+- Clé ScrapeGraphAI : présente
+  - compte : plan Free Plan, 500 crédits restants
 
 ## Accès au web
 
@@ -21,5 +22,5 @@ Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 - Laurent Vicherd (inactif) : pas d'adresse d'envoi dans la fiche
 - Lionel Segard (inactif) : pas d'adresse d'envoi dans la fiche
 - Lisa · Easy Learning Lisa (inactif) : pas d'adresse d'envoi dans la fiche
-- VerifAmende Flottes (actif, préparation) : mot de passe absent des secrets
+- VerifAmende Flottes (actif, préparation) : envoi REFUSÉ (SMTPAuthenticationError (535, b'5.7.8 Error: authentication failed: (reason unavailable)')), relève REFUSÉE (error b'[AUTHENTICATIONFAILED] Authentication failed.')
 - Willy Foucher · Ice Roll Rollissimo (inactif) : pas d'adresse d'envoi dans la fiche
