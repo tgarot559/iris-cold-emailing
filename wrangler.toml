@@ -5,4 +5,4 @@ compatibility_date = "2025-01-01"
 
 [vars]
 # Le dépôt privé qui contient ce dossier. Secrets à poser dans Cloudflare : GITHUB_TOKEN, CLE_CONSOLE.
-GITHUB_REPO = "compte/depot"
+GITHUB_REPO = "tgarot559/iris-cold-emailing"
