@@ -36,18 +36,24 @@ def donnees(fiche, etat):
                 d += timedelta(days=1)
             echeance = d.isoformat()
             prevu[echeance] += 1
+        strat = p.get("strategie") or {}
         contacts.append({
+            "id": p["id"],
             "nom": (p["prenom"] + " " + p["nom"]).strip() or "Adresse générale",
             "fonction": p["fonction"], "entreprise": p["entreprise"], "email": p["email"], "site": p["site"],
             "source": p.get("source_url") or p.get("site") or "",
             "statut": p["statut"], "etape": len(partis), "sur": len(delais),
             "dernier": max((m["envoye_le"] for m in partis), default=None), "prochain": echeance,
+            "score": int(strat.get("score") or 0), "confiance": strat.get("confiance") or "",
+            "raison": strat.get("raison") or "", "signal": strat.get("signal") or "",
+            "angle": strat.get("angle") or "",
         })
         if p["statut"] == "a_valider":
             attente.append({
                 "id": p["id"], "nom": (p["prenom"] + " " + p["nom"]).strip() or p["email"],
                 "fonction": p["fonction"], "entreprise": p["entreprise"], "email": p["email"],
                 "source": p["source_url"], "accroche": p["citation"], "alertes": p.get("alertes", []),
+                "strategie": p.get("strategie") or {},
                 "messages": [{"etape": m["etape"], "objet": m["objet"], "corps": m["corps"],
                               "jour": delais[m["etape"] - 1]} for m in ms if m["statut"] == "brouillon"],
             })
@@ -76,6 +82,10 @@ def donnees(fiche, etat):
             "etape": m["etape"], "objet": m.get("objet", ""), "quand": quand,
             "source": p.get("source_url") or p.get("site") or "",
         })
+    top_prospects = sorted(
+        [x for x in contacts if x.get("score", 0) > 0 and x["statut"] not in ("ecarte","stop","rebond","termine")],
+        key=lambda x: (-x.get("score", 0), x["entreprise"].lower())
+    )[:5]
     return {
         "client": fiche["nom"] or fiche["_id"], "signataire": f"{e['prenom']} {e['nom']}".strip(),
         "boite": fiche["boite"]["adresse"], "mode": fiche["mode"], "maj": iso(now),
@@ -104,6 +114,8 @@ def donnees(fiche, etat):
             "prospects_mois": fiche["cible"]["prospects_par_mois"],
         },
         "prochains": prochains,
+        "top_prospects": top_prospects,
+        "optimisation_cible": etat.get("optimisation_cible") or {},
     }
 
 
