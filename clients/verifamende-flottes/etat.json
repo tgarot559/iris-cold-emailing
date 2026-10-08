@@ -3,7 +3,649 @@
  "demarrage": null,
  "pause": false,
  "motif_pause": "",
- "entreprises": {},
+ "entreprises": {
+  "systemessolaires.fr": {
+   "nom": "Systemes Solaires",
+   "site": "https://systemessolaires.fr",
+   "siren": "501542021",
+   "ville": "Cournon-D'Auvergne",
+   "dirigeants": [
+    {
+     "prenom": "Xavier",
+     "nom": "Borel",
+     "qualite": "Président du conseil d’administration et directeur général"
+    },
+    {
+     "prenom": "Vincent",
+     "nom": "Gorin",
+     "qualite": "Administrateur"
+    },
+    {
+     "prenom": "Anthony",
+     "nom": "Goupil",
+     "qualite": "Administrateur"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_adresse"
+  },
+  "siren:914175047": {
+   "nom": "Societe Menage Service Bethune",
+   "site": "",
+   "siren": "914175047",
+   "ville": "Bethune",
+   "dirigeants": [
+    {
+     "prenom": "Emeline",
+     "nom": "Montecalvo (Collin)",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Clément",
+     "nom": "Doyen",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Arnaud",
+     "nom": "Puissant",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "siren:845175561": {
+   "nom": "Silversun Technics",
+   "site": "",
+   "siren": "845175561",
+   "ville": "Lambesc",
+   "dirigeants": [
+    {
+     "prenom": "Frederic",
+     "nom": "Blanc",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "apalib.fr": {
+   "nom": "Apalib",
+   "site": "https://www.apalib.fr",
+   "siren": "778950717",
+   "ville": "Mulhouse",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_adresse"
+  },
+  "groupe-feron.fr": {
+   "nom": "Sarl Feron",
+   "site": "https://groupe-feron.fr",
+   "siren": "518838917",
+   "ville": "Bairon Et Ses Environs",
+   "dirigeants": [
+    {
+     "prenom": "Sylvain",
+     "nom": "Feron",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "a_explorer"
+  },
+  "siren:889107058": {
+   "nom": "Breizh Sas",
+   "site": "",
+   "siren": "889107058",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "siren:921026183": {
+   "nom": "Menage Clean 95",
+   "site": "",
+   "siren": "921026183",
+   "ville": "Paris",
+   "dirigeants": [
+    {
+     "prenom": "Jean-Christophe",
+     "nom": "Puissant (Puissant)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "solaireclimchauffage.fr": {
+   "nom": "Solaire Clim Chauffage",
+   "site": "https://solaireclimchauffage.fr",
+   "siren": "891052672",
+   "ville": "Veauche",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "a_explorer"
+  },
+  "siren:853197473": {
+   "nom": "Cleaninvest",
+   "site": "",
+   "siren": "853197473",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "siren:797587052": {
+   "nom": "Association Services A Dom'",
+   "site": "",
+   "siren": "797587052",
+   "ville": "Rieumes",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "site_introuvable"
+  },
+  "siren:883093544": {
+   "nom": "Normanclean",
+   "site": "",
+   "siren": "883093544",
+   "ville": "Trouville-Sur-Mer",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:832293153": {
+   "nom": "Unaide",
+   "site": "",
+   "siren": "832293153",
+   "ville": "Calais",
+   "dirigeants": [
+    {
+     "prenom": "Mathieu",
+     "nom": "Michiels",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:889904470": {
+   "nom": "Escouba Sas",
+   "site": "",
+   "siren": "889904470",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:908422793": {
+   "nom": "Aj Initiative",
+   "site": "",
+   "siren": "908422793",
+   "ville": "Lyon",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:411109994": {
+   "nom": "Sarl Ambulances Arnould Bourbon",
+   "site": "",
+   "siren": "411109994",
+   "ville": "Saint-Nabord",
+   "dirigeants": [
+    {
+     "prenom": "Sebastien",
+     "nom": "Arnould (Arnould)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:269100731": {
+   "nom": "Ctre Com Action Sociale De Massy",
+   "site": "",
+   "siren": "269100731",
+   "ville": "Massy",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:803217934": {
+   "nom": "M.J.Kanou",
+   "site": "",
+   "siren": "803217934",
+   "ville": "Bordeaux",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:410953772": {
+   "nom": "Aide Aux  Familles Du Calvados",
+   "site": "",
+   "siren": "410953772",
+   "ville": "Carpiquet",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:808317366": {
+   "nom": "Global Habitat",
+   "site": "",
+   "siren": "808317366",
+   "ville": "Anglet",
+   "dirigeants": [
+    {
+     "prenom": "Jerome",
+     "nom": "Thore",
+     "qualite": "Commissaire aux comptes suppléant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:539679555": {
+   "nom": "B & C",
+   "site": "",
+   "siren": "539679555",
+   "ville": "Montelimar",
+   "dirigeants": [
+    {
+     "prenom": "Arnaud",
+     "nom": "Puissant",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:513131656": {
+   "nom": "A Ciel Ouvert",
+   "site": "",
+   "siren": "513131656",
+   "ville": "Venissieux",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:814973384": {
+   "nom": "Ck Energie",
+   "site": "",
+   "siren": "814973384",
+   "ville": "Francheville",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:097380091": {
+   "nom": "Lo Piccolo Sas",
+   "site": "",
+   "siren": "097380091",
+   "ville": "Billere",
+   "dirigeants": [
+    {
+     "prenom": "Gilbert",
+     "nom": "Lo Piccolo",
+     "qualite": "Autre"
+    },
+    {
+     "prenom": "Remy",
+     "nom": "Lo Piccolo",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:751252834": {
+   "nom": "Techydro",
+   "site": "",
+   "siren": "751252834",
+   "ville": "Chartres-De-Bretagne",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:402988331": {
+   "nom": "Alarmes Coffres Securite",
+   "site": "",
+   "siren": "402988331",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:817989072": {
+   "nom": "Les Services D'Emilie",
+   "site": "",
+   "siren": "817989072",
+   "ville": "Versailles",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:830578282": {
+   "nom": "Moticlean",
+   "site": "",
+   "siren": "830578282",
+   "ville": "Rennes",
+   "dirigeants": [
+    {
+     "prenom": "Stephane",
+     "nom": "Heslot",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:429177660": {
+   "nom": "Azur Trucks Froid",
+   "site": "",
+   "siren": "429177660",
+   "ville": "Villeneuve-Loubet",
+   "dirigeants": [
+    {
+     "prenom": "Pierre",
+     "nom": "Ippolito",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Patrick",
+     "nom": "Marchand",
+     "qualite": "Commissaire aux comptes suppléant"
+    },
+    {
+     "prenom": "Jacques",
+     "nom": "Sivignon",
+     "qualite": "Commissaire aux comptes titulaire"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:810996744": {
+   "nom": "Filao",
+   "site": "",
+   "siren": "810996744",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:502363856": {
+   "nom": "Serviadoms",
+   "site": "",
+   "siren": "502363856",
+   "ville": "Suresnes",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:537728370": {
+   "nom": "Oneworld",
+   "site": "",
+   "siren": "537728370",
+   "ville": "Paris",
+   "dirigeants": [
+    {
+     "prenom": "Mehmud",
+     "nom": "Alam",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:799430483": {
+   "nom": "E.D.Ouest",
+   "site": "",
+   "siren": "799430483",
+   "ville": "Nantes",
+   "dirigeants": [
+    {
+     "prenom": "Dominique",
+     "nom": "Guillet",
+     "qualite": "Commissaire aux comptes suppléant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:305775652": {
+   "nom": "Spie Batignolles Energie - Sopac",
+   "site": "",
+   "siren": "305775652",
+   "ville": "Pompaire",
+   "dirigeants": [
+    {
+     "prenom": "Patrick",
+     "nom": "Zulian",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:380267930": {
+   "nom": "Ambulances Sansoucy",
+   "site": "",
+   "siren": "380267930",
+   "ville": "Saint-Nazaire",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:377150065": {
+   "nom": "Entreprise Leverrier",
+   "site": "",
+   "siren": "377150065",
+   "ville": "Saint Georges Des Groseillers",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:779940949": {
+   "nom": "Familles Rurales Federation Dept Moselle",
+   "site": "",
+   "siren": "779940949",
+   "ville": "Marly",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:883881823": {
+   "nom": "Mg Services",
+   "site": "",
+   "siren": "883881823",
+   "ville": "Grenoble",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:752413674": {
+   "nom": "Housework & Co",
+   "site": "",
+   "siren": "752413674",
+   "ville": "Charenton-Le-Pont",
+   "dirigeants": [
+    {
+     "prenom": "Nicolas",
+     "nom": "Paquelin (Paquelin)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:933808933": {
+   "nom": "Menage Repassage Services A Dom",
+   "site": "",
+   "siren": "933808933",
+   "ville": "Paris",
+   "dirigeants": [
+    {
+     "prenom": "Vincent",
+     "nom": "Herlin",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:811016948": {
+   "nom": "Hev Services",
+   "site": "",
+   "siren": "811016948",
+   "ville": "Champigny-Sur-Marne",
+   "dirigeants": [
+    {
+     "prenom": "Eric",
+     "nom": "Vassail",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:408016145": {
+   "nom": "Cogem",
+   "site": "",
+   "siren": "408016145",
+   "ville": "Vaulx-En-Velin",
+   "dirigeants": [
+    {
+     "prenom": "Christopher",
+     "nom": "Landry",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:319648036": {
+   "nom": "Assistance Urgence - La Malouine",
+   "site": "",
+   "siren": "319648036",
+   "ville": "Cancale",
+   "dirigeants": [
+    {
+     "prenom": "Rodolphe",
+     "nom": "Cheanne (Cheanne)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Rodolphe",
+     "nom": "Cheanne",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:799576525": {
+   "nom": "Direct Secours",
+   "site": "",
+   "siren": "799576525",
+   "ville": "Tournon-Sur-Rhone",
+   "dirigeants": [
+    {
+     "prenom": "Magali",
+     "nom": "Mary",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Alexis",
+     "nom": "Perrot",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:498397843": {
+   "nom": "Point Clim",
+   "site": "",
+   "siren": "498397843",
+   "ville": "Malakoff",
+   "dirigeants": [
+    {
+     "prenom": "Didier",
+     "nom": "Pariente (Pariente)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:382020832": {
+   "nom": "C.D.Froid",
+   "site": "",
+   "siren": "382020832",
+   "ville": "La Creche",
+   "dirigeants": [
+    {
+     "prenom": "Arnaud",
+     "nom": "Bodin",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Aurelie",
+     "nom": "Bodin",
+     "qualite": "Directeur Général"
+    },
+    {
+     "prenom": "Marie",
+     "nom": "Bayon (Bodin)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:439480617": {
+   "nom": "Adrien Alarme",
+   "site": "",
+   "siren": "439480617",
+   "ville": "Binic-Etables-Sur-Mer",
+   "dirigeants": [
+    {
+     "prenom": "Adrien",
+     "nom": "Le Mortellec",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Philippe",
+     "nom": "Le Quement",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Mikael",
+     "nom": "Touchard",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:439726597": {
+   "nom": "Ass Admr Des Lieux De Vie",
+   "site": "",
+   "siren": "439726597",
+   "ville": "La Roche-Sur-Yon",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:331034819": {
+   "nom": "Smef Azur",
+   "site": "",
+   "siren": "331034819",
+   "ville": "La Fare Les Oliviers",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  }
+ },
  "prospects": {},
  "messages": [],
  "opposition": {},
@@ -12,13 +654,35 @@
    "date": "2026-10-07T22:33:19+02:00",
    "type": "erreur",
    "detail": "registre des entreprises injoignable (France entière)"
+  },
+  {
+   "date": "2026-10-08T15:18:00+02:00",
+   "type": "sourcing",
+   "detail": "48 entreprise(s) relevée(s) au registre public"
+  },
+  {
+   "date": "2026-10-08T15:21:03+02:00",
+   "type": "sourcing",
+   "detail": "recherche de sites : 4 trouvé(s) sur 10 entreprise(s)"
+  },
+  {
+   "date": "2026-10-08T15:21:30+02:00",
+   "type": "erreur",
+   "detail": "exploration groupe-feron.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfpqfTGWv7VGJdQoHX425\"}"
+  },
+  {
+   "date": "2026-10-08T15:21:33+02:00",
+   "type": "erreur",
+   "detail": "exploration solaireclimchauffage.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cfpqfhp8GtAnrMDTBPfXh\"}"
   }
  ],
  "boite": {
   "dernier_uid": null,
   "prochain_envoi_apres": null
  },
- "registre": {},
+ "registre": {
+  "43.21A,43.22A,43.22B,43.32A,43.34Z,81.21Z,81.22Z,86.90A,49.32Z,88.10A,53.20Z,33.12Z,95.22Z||11,12,21": 3
+ },
  "recherches_faites": {},
  "sources_lues": {}
 }
