@@ -131,6 +131,8 @@ def _parametres_distants(fiche):
     s = d.get("settings") or {}
     ident, mb, target, offer = s.get("identity") or {}, s.get("mailbox") or {}, s.get("target") or {}, s.get("offer") or {}
     distant = {
+        "actif": True,
+        "envoi": bool(d.get("sending_open")),
         "mode": s.get("mode") or fiche.get("mode") or "validation",
         "expediteur": {
             "prenom": ident.get("first_name",""), "nom": ident.get("last_name",""),
