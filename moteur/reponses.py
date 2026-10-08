@@ -9,6 +9,7 @@ from email.utils import parseaddr
 
 from .ia import ErreurIA, en_json
 from .socle import annuler_messages, iso, lire_date, noter, opposer
+from . import oidc
 
 RE_STOP = re.compile(
     r"\bstop\b|d[ée]sinscri|d[ée]sabonn|unsubscribe|ne (?:plus|pas) (?:me |nous |m'|)(?:recevoir|contacter|[ée]crire|solliciter|relancer|d[ée]marcher)"
@@ -24,27 +25,13 @@ Réponds uniquement en JSON : {"intention": "...", "resume": "une phrase factuel
 
 
 
-def par_linkup(fiche, api_key, etat):
-    """Relève les nouveaux messages via LinkupAPI et les convertit au format EmailMessage attendu par traiter()."""
-    account_id=(fiche.get("linkup") or {}).get("account_id") or ""
-    if not account_id or not api_key:
-        return []
-    payload={"account_id":account_id,"action":"list_inbox","params":{"count":50}}
-    r=requests.post("https://api.linkupapi.com/v2/messages",
-                    headers={"x-api-key":api_key,"Content-Type":"application/json"},
-                    json=payload,timeout=45)
-    try:d=r.json()
-    except Exception:d={}
-    if r.status_code>=400 or not d.get("success"):
-        raise RuntimeError(((d.get("error") or {}).get("message") or f"HTTP {r.status_code}"))
-    convs=((d.get("data") or {}).get("conversations") or [])
+
+def _conversations_vers_messages(etat, convs):
     vus=set(etat.setdefault("boite",{}).get("linkup_vus") or [])
     par_fil={m.get("message_id"):m.get("prospect") for m in etat.get("messages",[]) if m.get("message_id")}
-    recus=[]
-    nouveaux=[]
+    recus=[]; nouveaux=[]
     for x in convs:
-        lm=x.get("last_message") or {}
-        sender=lm.get("sender") or {}
+        lm=x.get("last_message") or {}; sender=lm.get("sender") or {}
         mid=str(x.get("message_id") or x.get("id") or "")
         if not mid or mid in vus or sender.get("is_me"):
             continue
@@ -60,14 +47,40 @@ def par_linkup(fiche, api_key, etat):
             pid=par_fil.get(ref)
             if pid and pid in etat.get("prospects",{}):
                 em["X-Failed-Recipients"]=etat["prospects"][pid]["email"]
-            else:
+            elif de:
                 em["X-Failed-Recipients"]=de
-        recus.append(em)
-        nouveaux.append(mid)
+        recus.append(em); nouveaux.append(mid)
     if nouveaux:
         etat["boite"]["linkup_vus"]=(list(vus)+nouveaux)[-500:]
     return recus
 
+def par_linkup_proxy(fiche, etat):
+    """Relève via le backend IRIS ; aucune clé LinkupAPI n'est présente dans GitHub."""
+    h=oidc.headers()
+    if not h:
+        raise RuntimeError("jeton OIDC GitHub indisponible")
+    r=requests.post("https://new-app-i5ds.onrender.com/api/coldmail/engine/linkup/inbox",
+                    headers=h,json={"code":fiche.get("code") or ""},timeout=45)
+    try:d=r.json()
+    except Exception:d={}
+    if r.status_code>=400:
+        raise RuntimeError(str(d.get("detail") or f"IRIS HTTP {r.status_code}"))
+    return _conversations_vers_messages(etat,((d.get("data") or {}).get("conversations") or []))
+
+def par_linkup(fiche, api_key, etat):
+    """Relève les nouveaux messages directement via LinkupAPI."""
+    account_id=(fiche.get("linkup") or {}).get("account_id") or ""
+    if not account_id or not api_key:
+        return []
+    payload={"account_id":account_id,"action":"list_inbox","params":{"count":50}}
+    r=requests.post("https://api.linkupapi.com/v2/messages",
+                    headers={"x-api-key":api_key,"Content-Type":"application/json"},
+                    json=payload,timeout=45)
+    try:d=r.json()
+    except Exception:d={}
+    if r.status_code>=400 or not d.get("success"):
+        raise RuntimeError(((d.get("error") or {}).get("message") or f"HTTP {r.status_code}"))
+    return _conversations_vers_messages(etat,((d.get("data") or {}).get("conversations") or []))
 def par_imap(fiche, mdp, etat):
     """Lit les messages arrivés depuis la dernière relève, sans les marquer comme lus."""
     b = fiche["boite"]
