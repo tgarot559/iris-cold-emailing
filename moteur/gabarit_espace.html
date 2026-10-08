@@ -210,6 +210,7 @@ function attente(){
     ${D.attente.map(a => { const ed = EDITION === a.id; return `<article class="fiche attention">
       <div><span class="qui">${esc(a.nom)}</span>${a.fonction ? ", " + esc(a.fonction) : ""} · ${esc(a.entreprise)}
         <span class="petit" style="display:block">${esc(a.email)}${a.source ? " · adresse lue sur " + esc(a.source) : ""}</span></div>
+      ${a.strategie && a.strategie.score ? `<div class="fiche" style="background:var(--tile);margin:12px 0"><div class="ligne"><b>Recommandation IRIS</b><span class="pastille p-ok">Score ${a.strategie.score}/100</span><span class="petit">confiance ${esc(a.strategie.confiance||"—")}</span></div>${a.strategie.raison ? `<p><b>Pourquoi :</b> ${esc(a.strategie.raison)}</p>` : ""}${a.strategie.signal ? `<p><b>Signal :</b> ${esc(a.strategie.signal)}</p>` : ""}${a.strategie.angle ? `<p><b>Angle :</b> ${esc(a.strategie.angle)}</p>` : ""}</div>` : ""}
       ${a.accroche ? `<blockquote>Lu sur son site : « ${esc(a.accroche)} »</blockquote>` : ""}
       ${a.alertes.map(x => `<p class="avis">À vérifier : ${esc(x)}</p>`).join("")}
       ${a.messages.map((m, i) => `<details ${i && !ed ? "" : "open"}><summary>${m.etape === 1 ? "Premier message" : "Relance, " + m.jour + " jours après"}</summary>
