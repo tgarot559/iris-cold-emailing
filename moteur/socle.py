@@ -16,8 +16,8 @@ DEFAUTS = {
     "nom": "",
     "code": "",                    # code secret de la page de suivi (12 caractères), créé par "nouveau"
     "mode": "validation",          # "validation" : rien ne part sans accord / "autonome"
-    "actif": True,
-    "envoi": True,                 # False : on cherche, on rédige, on fait valider, mais rien ne part (boîte pas encore prête)
+    "actif": False,
+    "envoi": False,                # Ouverture explicite obligatoire avant tout envoi réel
     "expediteur": {                # la personne qui signe, toujours réelle
         "prenom": "", "nom": "", "fonction": "", "societe": "",
         "site": "", "telephone": "", "mentions": "",
