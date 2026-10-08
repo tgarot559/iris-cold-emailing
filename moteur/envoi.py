@@ -9,6 +9,7 @@ from email.message import EmailMessage
 from email.utils import format_datetime, formataddr, make_msgid
 
 from .socle import domaine, est_oppose, iso, lire_date, maintenant, messages_de, noter
+from . import oidc
 
 
 def pied(fiche, prospect, etape):
@@ -50,6 +51,38 @@ def construire(fiche, prospect, m, premier):
     return msg
 
 
+
+
+def par_linkup_proxy(fiche):
+    """Transport via le backend IRIS : la clé LinkupAPI reste uniquement sur Render."""
+    code=fiche.get("code") or ""
+    if not code:
+        raise ValueError("code client absent")
+    def envoyer(msg):
+        h=oidc.headers()
+        if not h:
+            raise RuntimeError("jeton OIDC GitHub indisponible")
+        payload={
+            "code":code,
+            "to":str(msg["To"]),
+            "subject":str(msg["Subject"] or ""),
+            "message_text":msg.get_content(),
+        }
+        if msg.get("In-Reply-To"):
+            payload["thread_ref"]=str(msg.get("In-Reply-To"))
+        r=requests.post("https://new-app-i5ds.onrender.com/api/coldmail/engine/linkup/send",
+                        headers=h,json=payload,timeout=45)
+        try:d=r.json()
+        except Exception:d={}
+        if r.status_code>=400:
+            raise RuntimeError(str(d.get("detail") or f"IRIS HTTP {r.status_code}"))
+        info=((d.get("data") or {}).get("data") or {})
+        mid=info.get("message_id")
+        if mid:
+            if msg.get("Message-ID"): msg.replace_header("Message-ID",mid)
+            else: msg["Message-ID"]=mid
+        return d
+    return envoyer
 
 def par_linkup(fiche, api_key):
     """Transport réel via une boîte email déjà connectée dans LinkupAPI."""
