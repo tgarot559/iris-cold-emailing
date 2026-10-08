@@ -184,6 +184,12 @@ function pilotage(){
   </section>`;
 }
 
+function recommandations(){
+  const top = D.top_prospects || [];
+  const opt = D.optimisation_cible || {};
+  const cartes = top.length ? top.map(p => `<article class="fiche"><div class="ligne"><span class="qui">${esc(p.nom)}</span><span>${esc(p.entreprise)}</span><span class="pastille p-ok">Score ${p.score}/100</span></div><p><b>Pourquoi IRIS le recommande :</b> ${esc(p.raison || "Correspond à votre cible.")}</p><p><b>Signal :</b> ${esc(p.signal || "aucun signal spécifique")}</p><p><b>Angle conseillé :</b> ${esc(p.angle || "Approche directe liée à votre offre.")}</p><p class="petit">Confiance : ${esc(p.confiance || "—")}</p></article>`).join("") : '<p class="vide">IRIS affichera ici vos meilleurs prospects dès que les premières analyses auront été générées.</p>';
+  return `<section id="recommandations"><h2>Ce qu’IRIS recommande aujourd’hui</h2><p class="petit">IRIS analyse la pertinence de chaque prospect à partir de votre cible, de son entreprise et des signaux publics réellement trouvés.</p><div class="actions"><button class="bouton" data-act="trouver">IRIS trouve 10 nouveaux prospects</button><button class="bouton second" data-act="ameliorer">IRIS améliore ma cible</button></div>${opt.description ? `<article class="fiche attention"><h3>Proposition d’amélioration de votre cible</h3><p>${esc(opt.description)}</p>${opt.raison ? `<p><b>Pourquoi :</b> ${esc(opt.raison)}</p>` : ""}${(opt.fonctions||[]).length ? `<p><b>Fonctions prioritaires :</b> ${esc(opt.fonctions.join(", "))}</p>` : ""}${(opt.secteurs||[]).length ? `<p><b>Secteurs :</b> ${esc(opt.secteurs.join(", "))}</p>` : ""}${(opt.signaux||[]).length ? `<p><b>Signaux à rechercher :</b> ${esc(opt.signaux.join(" · "))}</p>` : ""}<p class="petit">Cette recommandation ne modifie jamais votre campagne automatiquement.</p></article>` : ""}<h3 style="margin-top:22px">Top prospects</h3>${cartes}</section>`;
+}
 function memoire(){
   try { const m = JSON.parse(localStorage.getItem("pm-" + CODE) || "{}"); const vivants = new Set(D.attente.map(a => a.id));
     for (const k of Object.keys(m)) if (k !== "_etat" && !vivants.has(k)) delete m[k];
