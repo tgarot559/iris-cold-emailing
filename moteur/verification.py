@@ -2,6 +2,7 @@
 import imaplib
 import smtplib
 import ssl
+import requests
 
 from . import sgai, sourcing, verif
 from .ia import ErreurIA, fabriquer
@@ -24,6 +25,25 @@ def _claude(sec, modele):
     except ErreurIA as e:
         return "ÉCHEC : " + str(e)[:260]
 
+
+
+def _linkup(fiche, cle):
+    lu=fiche.get("linkup") or {}
+    aid=lu.get("account_id") or ""
+    if not cle:
+        return "clé LinkupAPI absente"
+    if not aid:
+        return "boîte non connectée"
+    try:
+        r=requests.get(f"https://api.linkupapi.com/v2/accounts/{aid}",
+                       headers={"x-api-key":cle},timeout=25)
+        d=r.json() if r.content else {}
+        if r.status_code==200 and d.get("success"):
+            data=d.get("data") or {}
+            return f"OK ({data.get('status','inconnu')}, {data.get('platform','email')})"
+        return "REFUSÉ ("+str((d.get("error") or {}).get("message") or r.status_code)+")"
+    except Exception as e:
+        return f"ÉCHEC ({type(e).__name__} {str(e)[:120]})"
 
 def _boite(fiche, mdp):
     b = fiche["boite"]
@@ -60,6 +80,7 @@ def rapport():
     for role in ("extraction", "redaction"):
         l.append(f"  - modèle de {role} ({DEFAUTS['ia'][role]}) : {_essai(lambda r=role: _claude(sec, DEFAUTS['ia'][r]))}")
     l.append(f"- Clé ScrapeGraphAI : {'présente' if sec['scrapegraph'] else 'absente'}")
+    l.append(f"- Clé LinkupAPI : {'présente' if sec['linkup'] else 'ABSENTE'}")
     if sec["scrapegraph"]:
         s = _essai(lambda: sgai.Compte(sec["scrapegraph"], "verification").solde())
         l.append(f"  - compte : {'plan ' + str(s.get('plan')) + ', ' + str(s.get('remaining')) + ' crédits restants' if isinstance(s, dict) else (s or 'ÉCHEC : pas de réponse')}")
@@ -79,13 +100,13 @@ def rapport():
     l.append(f"- Registre public des entreprises : {_essai(registre)}")
     l.append(f"- Lecture d'une page (verifamende.fr/flottes) : {_essai(page)}")
     l.append(f"- Contrôle d'un domaine email (verifamende.fr) : {_essai(lambda: {True: 'OK, reçoit du courrier', False: 'ne reçoit pas de courrier', None: 'ÉCHEC : résolveur injoignable'}[verif.a_un_mx('verifamende.fr')])}")
-    l += ["", "## Boîtes d'envoi", ""]
+    l += ["", "## Boîtes d'envoi LinkupAPI", ""]
     for c in lister_clients():
         if c == "exemple":
             continue
         f = charger_fiche(c)
         etat = "actif" if f["actif"] else "inactif"
-        l.append(f"- {f['nom'] or c} ({etat}{'' if f['envoi'] else ', préparation'}) : {_essai(lambda: _boite(f, secrets(c)['mdp']))}")
+        l.append(f"- {f['nom'] or c} ({etat}{'' if f['envoi'] else ', préparation'}) : {_essai(lambda f=f,c=c: _linkup(f, secrets(c)['linkup']))}")
     texte = "\n".join(l) + "\n"
     (RACINE / "verification.md").write_text(texte, encoding="utf-8")
     return texte
