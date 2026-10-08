@@ -130,12 +130,12 @@ PREUVES : {' | '.join(fiche['offre']['preuves']) or 'aucune'}"""
         enregistrer_etat(client, etat)
         return bilan
 
-    if etat["demarrage"] and not a_blanc and fiche["envoi"] and (releve or sec["mdp"]):
+    if etat["demarrage"] and not a_blanc and fiche["envoi"] and (releve or sec["linkup"]):
         try:
-            recus = releve(fiche, etat) if releve else reponses.par_imap(fiche, sec["mdp"], etat)
+            recus = releve(fiche, etat) if releve else reponses.par_linkup(fiche, sec["linkup"], etat)
             bilan["releve"] = reponses.traiter(fiche, etat, recus, ia if sec["anthropic"] or releve else None)
         except Exception as e:
-            noter(etat, "erreur", f"relève de la boîte : {type(e).__name__} {e}")
+            noter(etat, "erreur", f"relève LinkupAPI : {type(e).__name__} {e}")
     elif releve:
         bilan["releve"] = reponses.traiter(fiche, etat, releve(fiche, etat), ia)
 
@@ -169,12 +169,15 @@ PREUVES : {' | '.join(fiche['offre']['preuves']) or 'aucune'}"""
                 nom = f"{maintenant():%Y%m%d-%H%M%S}-{msg['To'].replace('@', '_')}.eml"
                 (_d / nom).write_bytes(bytes(msg))
         elif not transport:
-            transport = envoi.par_smtp(fiche, sec["mdp"]) if sec["mdp"] else (None if fiche["envoi"] else (lambda m: None))
+            if fiche.get("envoi") and (fiche.get("linkup") or {}).get("status") == "connected" and sec["linkup"]:
+                transport = envoi.par_linkup(fiche, sec["linkup"])
+            else:
+                transport = None if fiche["envoi"] else (lambda m: None)
         if transport:
             kw = {"dormir": dormir} if dormir else ({"dormir": lambda s: None} if a_blanc else {})
             bilan["envoyes"], bilan["raison"] = envoi.envoyer(fiche, etat, transport, force=a_blanc, **kw)
         else:
-            bilan["envoyes"], bilan["raison"] = 0, "mot de passe de la boîte absent des secrets"
+            bilan["envoyes"], bilan["raison"] = 0, "boîte LinkupAPI non connectée ou clé LinkupAPI absente"
 
     espace.produire(fiche, etat)
     enregistrer_etat(client, etat)
