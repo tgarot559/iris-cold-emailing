@@ -219,7 +219,7 @@ function attente(){
       ${!LIVE ? "" : fait[a.id] ? `<p class="note-ok">${esc(fait[a.id])}</p>`
         : ed ? `<div class="actions"><button class="bouton" data-act="enregistrer" data-id="${a.id}">Enregistrer et valider</button><button class="bouton discret" data-act="annuler">Annuler</button></div>
           <p class="petit">La signature et la mention d'arrêt sont ajoutées automatiquement sous votre texte.</p>`
-        : `<div class="actions"><button class="bouton" data-act="valider" data-id="${a.id}">Valider</button><button class="bouton second" data-act="corriger" data-id="${a.id}">Corriger</button><button class="bouton discret" data-act="refuser" data-id="${a.id}">Ne pas contacter</button></div>`}
+        : `<div class="actions"><button class="bouton" data-act="valider" data-id="${a.id}">Valider</button><button class="bouton second" data-act="corriger" data-id="${a.id}">Modifier</button><button class="bouton discret" data-act="refuser" data-id="${a.id}">Passer</button></div>`}
     </article>`; }).join("")}</section>`;
 }
 
@@ -274,7 +274,7 @@ function rendre(){
   document.title = D.client + " · IRIS cold emailing";
   document.getElementById("tete").innerHTML = entete();
   const y = scrollY;
-  document.getElementById("page").innerHTML = pilotage() + attente() + chiffres() + reponses() + prevu() + contacts() + journal();
+  document.getElementById("page").innerHTML = pilotage() + recommandations() + attente() + chiffres() + reponses() + prevu() + contacts() + journal();
   scrollTo(0, y);
 }
 async function envoyer(decisions){
@@ -306,6 +306,12 @@ async function agir(b){
     }
     decisions.push({action: "valider", prospect: id});
     marquer = () => { retenir(id, "Corrigé et validé. " + DELAI); EDITION = null; };
+  } else if (act === "trouver") {
+    decisions = [{action:"trouver_prospects", quantite:10}];
+    marquer = () => retenir("_recherche", "IRIS va chercher 10 nouveaux prospects. " + DELAI);
+  } else if (act === "ameliorer") {
+    decisions = [{action:"ameliorer_cible"}];
+    marquer = () => retenir("_optimisation", "IRIS prépare une recommandation de ciblage. " + DELAI);
   } else if (act === "pause" || act === "reprise") {
     decisions = [act === "pause" ? {action: "pause", motif: "demandée depuis l'espace"} : {action: "reprise"}];
     marquer = () => retenir("_etat", {vu: D.etat, texte: (act === "pause" ? "Pause demandée. " : "Reprise demandée. ") + DELAI});
