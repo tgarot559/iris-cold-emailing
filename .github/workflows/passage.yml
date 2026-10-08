@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: write
+  id-token: write
 jobs:
   passage:
     runs-on: ubuntu-latest
@@ -24,7 +25,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SGAI_API_KEY: ${{ secrets.SGAI_API_KEY }}
-          LINKUP_API_KEY: ${{ secrets.LINKUP_API_KEY }}
           COLDMAIL_MAIL_PASSWORDS: ${{ secrets.COLDMAIL_MAIL_PASSWORDS }}
           COLDMAIL_PASSWORD_VERIFAMENDE_FLOTTES: ${{ secrets.COLDMAIL_SECRETS }}
           COLDMAIL_PASSWORD_ALEXANDRE_BELLANGER: ${{ secrets.COLDMAIL_PASSWORD_ALEXANDRE_BELLANGER }}
