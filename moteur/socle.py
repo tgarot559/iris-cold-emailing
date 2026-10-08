@@ -5,6 +5,7 @@ import json
 import os
 import re
 import tempfile
+import requests
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -111,9 +112,64 @@ def lister_clients():
     return sorted(p.name for p in base.iterdir() if (p / "client.json").exists())
 
 
+def _parametres_distants(fiche):
+    """Récupère les paramètres documentés par le client dans son espace.
+    Ils ne sont appliqués que si le client ET l'admin les ont validés."""
+    code = fiche.get("code") or ""
+    if not re.fullmatch(r"[a-z0-9]{12}", code):
+        return fiche
+    base = os.environ.get("COLDMAIL_ONBOARDING_API", "https://new-app-i5ds.onrender.com").rstrip("/")
+    try:
+        r = requests.get(f"{base}/api/coldmail/client/{code}", timeout=15)
+        if not r.ok:
+            return fiche
+        d = r.json()
+    except Exception:
+        return fiche
+    if not (d.get("client_validated") and d.get("admin_approved")):
+        return fiche
+    s = d.get("settings") or {}
+    ident, mb, target, offer = s.get("identity") or {}, s.get("mailbox") or {}, s.get("target") or {}, s.get("offer") or {}
+    distant = {
+        "mode": s.get("mode") or fiche.get("mode") or "validation",
+        "expediteur": {
+            "prenom": ident.get("first_name",""), "nom": ident.get("last_name",""),
+            "fonction": ident.get("role",""), "societe": ident.get("company",""),
+            "site": ident.get("website",""), "telephone": ident.get("phone",""),
+            "mentions": ident.get("legal_notice",""),
+        },
+        "boite": {
+            "adresse": mb.get("email",""),
+            "identifiant": mb.get("username","") or mb.get("email",""),
+            "smtp": {"hote": mb.get("smtp_host",""), "port": int(mb.get("smtp_port") or 587)},
+            "imap": {"hote": mb.get("imap_host",""), "port": int(mb.get("imap_port") or 993)},
+        },
+        "cible": {
+            "description": target.get("description",""), "fonctions": target.get("roles") or [],
+            "sources": fiche.get("cible",{}).get("sources") or [], "sites": fiche.get("cible",{}).get("sites") or [],
+            "recherches": fiche.get("cible",{}).get("recherches") or [], "registre": fiche.get("cible",{}).get("registre") or {},
+            "accepter_generiques": bool(target.get("generic_emails", True)),
+            "accepter_webmails": False,
+            "max_par_entreprise": int(target.get("max_per_company") or 1),
+            "prospects_par_mois": int(target.get("prospects_per_month") or 100),
+        },
+        "offre": {
+            "proposition": offer.get("proposition",""), "preuves": offer.get("proofs") or [],
+            "appel": offer.get("cta") or "un échange de dix minutes au téléphone",
+            "ton": offer.get("tone") or "simple, direct, respectueux, vouvoiement",
+            "interdits": offer.get("banned_claims") or [],
+        },
+        "sequence": {"delais_jours": (s.get("sequence") or {}).get("delays") or [0,3,7],
+                     "cloture_jours": max((s.get("sequence") or {}).get("delays") or [0,3,7])},
+    }
+    return _fusion(fiche, distant)
+
+
 def charger_fiche(client):
     brut = json.loads((dossier(client) / "client.json").read_text(encoding="utf-8"))
     fiche = _fusion(DEFAUTS, brut)
+    fiche["_id"] = client
+    fiche = _parametres_distants(fiche)
     fiche["_id"] = client
     return fiche
 
