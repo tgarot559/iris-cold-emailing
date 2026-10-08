@@ -23,7 +23,7 @@
     }
   },
   "cible": {
-    "description": "Agences de 5 à 100 salariés dans votre zone d'intervention. Objectif : 100 à 150 agences suivies dans la durée. ; Entreprises de 100 à 5 000 salariés qui organisent des événements internes.",
+    "description": "Agences de 5 à 100 salariés en France entière. Objectif : 100 à 150 agences suivies dans la durée. ; Entreprises de 100 à 5 000 salariés qui organisent des événements internes.",
     "fonctions": [
       "dirigeant",
       "chef de projet",
@@ -83,5 +83,6 @@
     "seuil_rebonds": 0.05
   },
   "code": "yv5vae7kcm6u",
-  "espace_iris": "21tnw7p6lhzk"
+  "espace_iris": "21tnw7p6lhzk",
+  "envoi": false
 }
