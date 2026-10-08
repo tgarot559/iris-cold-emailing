@@ -130,6 +130,7 @@ def _parametres_distants(fiche):
         return fiche
     s = d.get("settings") or {}
     ident, mb, target, offer = s.get("identity") or {}, s.get("mailbox") or {}, s.get("target") or {}, s.get("offer") or {}
+    mc = d.get("mailbox_connection") or {}
     distant = {
         "actif": True,
         "envoi": bool(d.get("sending_open")),
@@ -141,10 +142,16 @@ def _parametres_distants(fiche):
             "mentions": ident.get("legal_notice",""),
         },
         "boite": {
-            "adresse": mb.get("email",""),
-            "identifiant": mb.get("username","") or mb.get("email",""),
+            "adresse": mc.get("email") or mb.get("email",""),
+            "identifiant": mc.get("email") or mb.get("email",""),
             "smtp": {"hote": mb.get("smtp_host",""), "port": int(mb.get("smtp_port") or 587)},
             "imap": {"hote": mb.get("imap_host",""), "port": int(mb.get("imap_port") or 993)},
+        },
+        "linkup": {
+            "account_id": mc.get("account_id") or "",
+            "status": mc.get("status") or "not_connected",
+            "provider": mc.get("provider") or "",
+            "daily_limit": int(mc.get("daily_limit") or 40),
         },
         "cible": {
             "description": target.get("description",""), "fonctions": target.get("roles") or [],
@@ -234,6 +241,7 @@ def secrets(client):
         "mdp": mdp_client or mdp_coffre or mdp_json or mdp_compat or mot_de_passe_legacy,
         "scrapegraph": data.get("scrapegraph") or os.environ.get("SGAI_API_KEY", ""),
         "scrapegraph_client": (data.get("clients", {}).get(client, {}) or {}).get("scrapegraph", ""),
+        "linkup": data.get("linkup") or os.environ.get("LINKUP_API_KEY", ""),
         "secret_boite": nom_env,
     }
 
