@@ -3,6 +3,7 @@ import random
 import smtplib
 import ssl
 import time
+import requests
 from datetime import timedelta
 from email.message import EmailMessage
 from email.utils import format_datetime, formataddr, make_msgid
@@ -48,6 +49,41 @@ def construire(fiche, prospect, m, premier):
     msg.set_content(m["corps"].rstrip() + "\n\n" + pied(fiche, prospect, m["etape"]) + "\n", charset="utf-8")
     return msg
 
+
+
+def par_linkup(fiche, api_key):
+    """Transport réel via une boîte email déjà connectée dans LinkupAPI."""
+    account_id=(fiche.get("linkup") or {}).get("account_id") or ""
+    if not account_id:
+        raise ValueError("boîte LinkupAPI non connectée")
+    if not api_key:
+        raise ValueError("clé LinkupAPI absente")
+    def envoyer(msg):
+        params={
+            "to": str(msg["To"]),
+            "subject": str(msg["Subject"] or ""),
+            "message_text": msg.get_content(),
+        }
+        if msg.get("In-Reply-To"):
+            params["thread_ref"]=str(msg.get("In-Reply-To"))
+        payload={"account_id":account_id,"action":"send","params":params}
+        r=requests.post("https://api.linkupapi.com/v2/messages",
+                        headers={"x-api-key":api_key,"Content-Type":"application/json"},
+                        json=payload,timeout=45)
+        try:d=r.json()
+        except Exception:d={}
+        if r.status_code>=400 or not d.get("success"):
+            err=(d.get("error") or {}).get("message") or f"HTTP {r.status_code}"
+            raise RuntimeError("LinkupAPI: "+err)
+        info=((d.get("data") or {}).get("data") or {})
+        mid=info.get("message_id")
+        if mid:
+            if msg.get("Message-ID"):
+                msg.replace_header("Message-ID",mid)
+            else:
+                msg["Message-ID"]=mid
+        return d
+    return envoyer
 
 def par_smtp(fiche, mdp):
     """Transport réel. Fonctionne avec Gmail (mot de passe d'application) comme avec tout autre hébergeur."""
