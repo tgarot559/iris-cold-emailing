@@ -24,6 +24,13 @@ from . import envoi, espace, redaction, reponses, sgai, sourcing
 from .ia import fabriquer
 from .socle import (effacer, charger_etat, charger_fiche, controler_fiche, dossier, enregistrer_etat, identifiant,
                     iso, lister_clients, maintenant, noter, opposer, secrets)
+from .ia import en_json, ErreurIA
+
+SYS_OPTIMISATION_CIBLE = """Tu es un expert de prospection B2B. À partir de la cible, de l'offre et des preuves fournies,
+propose une version plus précise et exploitable de l'ICP sans inventer de faits.
+Réponds uniquement en JSON :
+{"description":"...", "fonctions":["..."], "secteurs":["..."], "signaux":["..."],
+ "priorites":["..."], "a_eviter":["..."], "raison":"..."}"""
 
 
 def _decisions_distantes(fiche):
@@ -63,12 +70,37 @@ def passage(client, a_blanc=False, recherche=True, ia=None, transport=None, rele
     ia = ia or fabriquer(sec["anthropic"], sec["anthropic_espace"])
 
     distantes, ids_distants = _decisions_distantes(fiche)
+    force_recherche, limite_force, demande_optimisation = False, 10, False
     if distantes:
+        ordinaires=[]
+        for d in distantes:
+            if d.get("action")=="trouver_prospects":
+                force_recherche=True
+                limite_force=max(1,min(20,int(d.get("quantite") or 10)))
+                bilan.setdefault("decisions", []).append(f"recherche forcée de {limite_force} prospects")
+            elif d.get("action")=="ameliorer_cible":
+                demande_optimisation=True
+                bilan.setdefault("decisions", []).append("optimisation de cible demandée")
+            else:
+                ordinaires.append(d)
         try:
-            bilan.setdefault("decisions", []).extend(redaction.appliquer_decisions(fiche, etat, distantes))
+            if ordinaires:
+                bilan.setdefault("decisions", []).extend(redaction.appliquer_decisions(fiche, etat, ordinaires))
             _accuser_decisions(fiche, ids_distants)
         except (ValueError, KeyError, TypeError) as e:
             noter(etat, "erreur", f"décision distante illisible : {e}")
+
+    if demande_optimisation:
+        try:
+            c=f"""CIBLE ACTUELLE : {fiche['cible']['description']}
+FONCTIONS : {', '.join(fiche['cible']['fonctions'])}
+OFFRE : {fiche['offre']['proposition']}
+PREUVES : {' | '.join(fiche['offre']['preuves']) or 'aucune'}"""
+            reco=en_json(ia(SYS_OPTIMISATION_CIBLE,c,fiche["ia"]["redaction"],1400))
+            etat["optimisation_cible"]={**reco,"date":iso()}
+            noter(etat,"optimisation","proposition d'amélioration de la cible générée")
+        except ErreurIA as e:
+            noter(etat,"erreur",f"optimisation cible : {e}")
 
     for f in _decisions_en_attente(client):
         try:
@@ -115,14 +147,14 @@ def passage(client, a_blanc=False, recherche=True, ia=None, transport=None, rele
         mois = maintenant().strftime("%Y-%m")
         crees = sum(1 for p in etat["prospects"].values() if p["cree"][:7] == mois and p["statut"] != "ecarte")
         stock = sum(1 for p in etat["prospects"].values() if p["statut"] in ("nouveau", "a_valider", "pret"))
-        if recherche and stock < 15 and crees < fiche["cible"]["prospects_par_mois"]:
+        if recherche and ((stock < 15 and crees < fiche["cible"]["prospects_par_mois"]) or force_recherche):
             try:
                 sg = sgai.ouvrir(fiche, sec)
                 sourcing.registre(fiche, etat)
                 sourcing.recherches(fiche, etat, sg)
                 sourcing.trouver_sites(fiche, etat, sg)
                 sourcing.decouvrir(fiche, etat, ia, sg=sg)
-                bilan["trouves"] = sourcing.explorer(fiche, etat, ia, sg=sg)
+                bilan["trouves"] = sourcing.explorer(fiche, etat, ia, limite=limite_force if force_recherche else 15, sg=sg)
                 if sg:
                     bilan["credits_scrapegraph"] = sg.utilises()[0]
             except Exception as e:
