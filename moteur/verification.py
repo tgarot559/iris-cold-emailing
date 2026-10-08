@@ -4,7 +4,7 @@ import smtplib
 import ssl
 import requests
 
-from . import sgai, sourcing, verif
+from . import sgai, sourcing, verif, oidc
 from .ia import ErreurIA, fabriquer
 from .socle import DEFAUTS, RACINE, charger_fiche, iso, lister_clients, secrets
 
@@ -26,6 +26,17 @@ def _claude(sec, modele):
         return "ÉCHEC : " + str(e)[:260]
 
 
+
+def _proxy_linkup_status():
+    h=oidc.headers()
+    if not h:
+        return "jeton OIDC GitHub indisponible"
+    r=requests.get("https://new-app-i5ds.onrender.com/api/coldmail/engine/status",headers=h,timeout=25)
+    try:d=r.json()
+    except Exception:d={}
+    if r.status_code==200 and d.get("ok"):
+        return "OK (clé LinkupAPI présente sur Render)" if d.get("linkup_configured") else "ÉCHEC : clé LinkupAPI absente sur Render"
+    return "ÉCHEC : "+str(d.get("detail") or r.status_code)
 
 def _linkup(fiche, cle):
     lu=fiche.get("linkup") or {}
@@ -80,7 +91,7 @@ def rapport():
     for role in ("extraction", "redaction"):
         l.append(f"  - modèle de {role} ({DEFAUTS['ia'][role]}) : {_essai(lambda r=role: _claude(sec, DEFAUTS['ia'][r]))}")
     l.append(f"- Clé ScrapeGraphAI : {'présente' if sec['scrapegraph'] else 'absente'}")
-    l.append(f"- Clé LinkupAPI : {'présente' if sec['linkup'] else 'ABSENTE'}")
+    l.append(f"- Accès LinkupAPI via IRIS/OIDC : {_essai(_proxy_linkup_status)}")
     if sec["scrapegraph"]:
         s = _essai(lambda: sgai.Compte(sec["scrapegraph"], "verification").solde())
         l.append(f"  - compte : {'plan ' + str(s.get('plan')) + ', ' + str(s.get('remaining')) + ' crédits restants' if isinstance(s, dict) else (s or 'ÉCHEC : pas de réponse')}")
@@ -106,7 +117,10 @@ def rapport():
             continue
         f = charger_fiche(c)
         etat = "actif" if f["actif"] else "inactif"
-        l.append(f"- {f['nom'] or c} ({etat}{'' if f['envoi'] else ', préparation'}) : {_essai(lambda f=f,c=c: _linkup(f, secrets(c)['linkup']))}")
+        lu=f.get("linkup") or {}
+        l.append(f"- {f['nom'] or c} ({etat}{'' if f['envoi'] else ', préparation'}) : "
+                 + (f"boîte {lu.get('status','non connectée')} ({lu.get('provider') or 'fournisseur inconnu'})"
+                    if lu.get("account_id") else "boîte non connectée"))
     texte = "\n".join(l) + "\n"
     (RACINE / "verification.md").write_text(texte, encoding="utf-8")
     return texte
