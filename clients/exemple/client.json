@@ -1,7 +1,7 @@
 {
   "nom": "Atelier Roue Libre",
   "mode": "validation",
-  "actif": true,
+  "actif": false,
   "expediteur": {
     "prenom": "Camille",
     "nom": "Verdier",
@@ -82,5 +82,6 @@
       4
     ],
     "seuil_rebonds": 0.05
-  }
+  },
+  "envoi": false
 }
