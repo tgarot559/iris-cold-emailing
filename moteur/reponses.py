@@ -2,7 +2,9 @@
 import email
 import imaplib
 import re
+import requests
 from email import policy
+from email.message import EmailMessage
 from email.utils import parseaddr
 
 from .ia import ErreurIA, en_json
@@ -20,6 +22,51 @@ Catégories : "interesse" (veut échanger, demande un créneau ou un numéro), "
 "plus_tard" (pas maintenant, recontacter), "pas_interesse", "mauvais_contact" (renvoie vers quelqu'un d'autre), "autre".
 Réponds uniquement en JSON : {"intention": "...", "resume": "une phrase factuelle"}"""
 
+
+
+def par_linkup(fiche, api_key, etat):
+    """Relève les nouveaux messages via LinkupAPI et les convertit au format EmailMessage attendu par traiter()."""
+    account_id=(fiche.get("linkup") or {}).get("account_id") or ""
+    if not account_id or not api_key:
+        return []
+    payload={"account_id":account_id,"action":"list_inbox","params":{"count":50}}
+    r=requests.post("https://api.linkupapi.com/v2/messages",
+                    headers={"x-api-key":api_key,"Content-Type":"application/json"},
+                    json=payload,timeout=45)
+    try:d=r.json()
+    except Exception:d={}
+    if r.status_code>=400 or not d.get("success"):
+        raise RuntimeError(((d.get("error") or {}).get("message") or f"HTTP {r.status_code}"))
+    convs=((d.get("data") or {}).get("conversations") or [])
+    vus=set(etat.setdefault("boite",{}).get("linkup_vus") or [])
+    par_fil={m.get("message_id"):m.get("prospect") for m in etat.get("messages",[]) if m.get("message_id")}
+    recus=[]
+    nouveaux=[]
+    for x in convs:
+        lm=x.get("last_message") or {}
+        sender=lm.get("sender") or {}
+        mid=str(x.get("message_id") or x.get("id") or "")
+        if not mid or mid in vus or sender.get("is_me"):
+            continue
+        em=EmailMessage()
+        de=(sender.get("email") or (x.get("participant") or {}).get("email") or "").strip()
+        em["From"]=de
+        em["Subject"]=str(lm.get("subject") or "")
+        if x.get("message_id"): em["Message-ID"]=str(x.get("message_id"))
+        if x.get("in_reply_to"): em["In-Reply-To"]=str(x.get("in_reply_to"))
+        em.set_content(str(lm.get("text") or ""))
+        if x.get("is_bounce"):
+            ref=str(x.get("in_reply_to") or "")
+            pid=par_fil.get(ref)
+            if pid and pid in etat.get("prospects",{}):
+                em["X-Failed-Recipients"]=etat["prospects"][pid]["email"]
+            else:
+                em["X-Failed-Recipients"]=de
+        recus.append(em)
+        nouveaux.append(mid)
+    if nouveaux:
+        etat["boite"]["linkup_vus"]=(list(vus)+nouveaux)[-500:]
+    return recus
 
 def par_imap(fiche, mdp, etat):
     """Lit les messages arrivés depuis la dernière relève, sans les marquer comme lus."""
