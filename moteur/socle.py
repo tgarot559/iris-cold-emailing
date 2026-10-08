@@ -193,6 +193,8 @@ def controler_fiche(fiche):
         manques.append("expediteur.societe")
     if fiche.get("envoi", True) and not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", b["adresse"] or ""):
         manques.append("boite.adresse : l'adresse d'envoi")
+    if fiche.get("envoi", True) and (fiche.get("linkup") or {}).get("status") != "connected":
+        manques.append("linkup : la boîte email doit être connectée dans LinkupAPI")
     if not o["proposition"]:
         manques.append("offre.proposition")
     if not fiche["cible"]["description"]:
