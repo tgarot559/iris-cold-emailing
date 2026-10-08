@@ -76,7 +76,9 @@ def rediger(fiche, etat, ia, limite=20):
             + (f" (lu sur son site : « {p['citation']} »)" if p["citation"] else "")
             + f"\n\nÉcris {n} messages : le premier contact puis {n - 1} relance(s).")
         try:
-            msgs = en_json(ia(SYS, message, fiche["ia"]["redaction"], 1800)).get("messages", [])[:n]
+            sortie = en_json(ia(SYS, message, fiche["ia"]["redaction"], 2200))
+            msgs = (sortie.get("messages") or [])[:n]
+            strategie = sortie.get("strategie") or {}
         except ErreurIA as e:
             noter(etat, "erreur", f"rédaction {p['email']} : {e}")
             continue
@@ -84,6 +86,17 @@ def rediger(fiche, etat, ia, limite=20):
             noter(etat, "erreur", f"rédaction {p['email']} : {len(msgs)} message(s) au lieu de {n}")
             continue
         alertes = controler(msgs, fiche, p)
+        try:
+            score = max(0, min(100, int(strategie.get("score", 0))))
+        except Exception:
+            score = 0
+        p["strategie"] = {
+            "score": score,
+            "confiance": str(strategie.get("confiance") or "faible")[:20],
+            "raison": str(strategie.get("raison") or "")[:320],
+            "signal": str(strategie.get("signal") or p.get("accroche") or "aucun signal spécifique")[:320],
+            "angle": str(strategie.get("angle") or "")[:320],
+        }
         direct = fiche["mode"] == "autonome" and not alertes
         for i, m in enumerate(msgs, 1):
             etat["messages"].append({
