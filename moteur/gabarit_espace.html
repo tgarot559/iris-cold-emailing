@@ -110,6 +110,7 @@ label.petit { display: block; margin-top: 8px; }
 let D = /*DONNEES*/null;
 let LIVE = false, EDITION = null, ERREUR = "";
 const CODE = (new URLSearchParams(location.search).get("c") || location.pathname.split("/").filter(Boolean).pop() || "").toLowerCase();
+const COLDMAIL_API = "https://new-app-i5ds.onrender.com";
 const LIB = {nouveau:["Trouvé","p-neutre"],a_valider:["Attend votre accord","p-orange"],pret:["Prêt à partir","p-neutre"],
   en_sequence:["En cours","p-ok"],repondu:["A répondu","p-ok"],termine:["Sans réponse","p-neutre"],
   stop:["Ne plus contacter","p-stop"],rebond:["Adresse invalide","p-stop"],ecarte:["Écarté","p-neutre"]};
@@ -169,6 +170,7 @@ function pilotage(){
   return `<section><h2>Ce qu’IRIS fait pour vous</h2>
     <div class="fiche">
       <p><b>Cible travaillée :</b> ${esc(D.cible || "")}</p>
+      <p><a class="bouton second" href="/e/${CODE}/parametres/">Paramétrer ma campagne & voir le tutoriel</a></p>
       <p><b>Expéditeur :</b> ${esc(p.expediteur || D.signataire || "")}${p.adresse ? " · " + esc(p.adresse) : ""}</p>
       <p><b>Validation :</b> ${esc(p.validation || "")}</p>
       <p><b>Cadence :</b> départ à ${p.depart_jour ?? "—"} message(s)/jour, montée progressive jusqu’à ${p.plafond_jour ?? "—"} · créneaux ${hh(h[0])}–${hh(h[1])}, du lundi au vendredi.</p>
@@ -270,7 +272,7 @@ function rendre(){
   scrollTo(0, y);
 }
 async function envoyer(decisions){
-  const r = await fetch("/api/espace", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({code: CODE, decisions})});
+  const r = await fetch(COLDMAIL_API + "/api/coldmail/client/" + CODE + "/decision", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({decisions})});
   if (!r.ok) throw new Error((await r.json().catch(() => ({}))).erreur || "refus");
 }
 async function agir(b){
