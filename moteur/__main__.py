@@ -16,6 +16,8 @@
 """
 import json
 import sys
+import os
+import requests
 from collections import Counter
 
 from . import envoi, espace, redaction, reponses, sgai, sourcing
@@ -23,6 +25,29 @@ from .ia import fabriquer
 from .socle import (effacer, charger_etat, charger_fiche, controler_fiche, dossier, enregistrer_etat, identifiant,
                     iso, lister_clients, maintenant, noter, opposer, secrets)
 
+
+def _decisions_distantes(fiche):
+    code=fiche.get("code") or ""
+    if len(code)!=12:return [],[]
+    base=os.environ.get("COLDMAIL_ONBOARDING_API","https://new-app-i5ds.onrender.com").rstrip("/")
+    try:
+        r=requests.get(f"{base}/api/coldmail/client/{code}/decisions",timeout=15)
+        if not r.ok:return [],[]
+        items=r.json().get("items") or []
+        ids=[]; out=[]
+        for item in items:
+            ids.append(item.get("id"))
+            out.extend(item.get("decisions") or [])
+        return out,[x for x in ids if x is not None]
+    except Exception:
+        return [],[]
+
+def _accuser_decisions(fiche,ids):
+    if not ids:return
+    code=fiche.get("code") or ""
+    base=os.environ.get("COLDMAIL_ONBOARDING_API","https://new-app-i5ds.onrender.com").rstrip("/")
+    try: requests.post(f"{base}/api/coldmail/client/{code}/decisions/ack",json={"ids":ids},timeout=15)
+    except Exception: pass
 
 def _decisions_en_attente(client):
     d = dossier(client) / "decisions"
@@ -36,6 +61,14 @@ def passage(client, a_blanc=False, recherche=True, ia=None, transport=None, rele
     fiche, etat, sec = charger_fiche(client), charger_etat(client), secrets(client)
     bilan = {"client": client}
     ia = ia or fabriquer(sec["anthropic"], sec["anthropic_espace"])
+
+    distantes, ids_distants = _decisions_distantes(fiche)
+    if distantes:
+        try:
+            bilan.setdefault("decisions", []).extend(redaction.appliquer_decisions(fiche, etat, distantes))
+            _accuser_decisions(fiche, ids_distants)
+        except (ValueError, KeyError, TypeError) as e:
+            noter(etat, "erreur", f"décision distante illisible : {e}")
 
     for f in _decisions_en_attente(client):
         try:
