@@ -2090,6 +2090,680 @@
    ],
    "source": "registre public des entreprises",
    "statut": "sans_site"
+  },
+  "siren:417713690": {
+   "nom": "Airmax Groupe",
+   "site": "",
+   "siren": "417713690",
+   "ville": "Bourges",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:318684891": {
+   "nom": "Admr Du Pays De Quimperle",
+   "site": "",
+   "siren": "318684891",
+   "ville": "Bannalec",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:801650904": {
+   "nom": "Aidatou",
+   "site": "",
+   "siren": "801650904",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:301670964": {
+   "nom": "Soc Omni Pesage",
+   "site": "",
+   "siren": "301670964",
+   "ville": "Herouville-Saint-Clair",
+   "dirigeants": [
+    {
+     "prenom": "Stephane",
+     "nom": "Gancel",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Stephane",
+     "nom": "Gancel (Gancel)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:803515840": {
+   "nom": "Alpha Services 81",
+   "site": "",
+   "siren": "803515840",
+   "ville": "Castres",
+   "dirigeants": [
+    {
+     "prenom": "Fabrice",
+     "nom": "Villa",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:794854919": {
+   "nom": "C2A Energie Solaire",
+   "site": "",
+   "siren": "794854919",
+   "ville": "Versols-Et-Lapeyre",
+   "dirigeants": [
+    {
+     "prenom": "Guillaume",
+     "nom": "Charvet",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:750552002": {
+   "nom": "Haka Energy",
+   "site": "",
+   "siren": "750552002",
+   "ville": "Le Vigan",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:902236447": {
+   "nom": "Fleur De Lys Menage",
+   "site": "",
+   "siren": "902236447",
+   "ville": "Paris",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:791851660": {
+   "nom": "Malezieux Industrie",
+   "site": "",
+   "siren": "791851660",
+   "ville": "Woippy",
+   "dirigeants": [
+    {
+     "prenom": "Eric",
+     "nom": "Defrance",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:432606473": {
+   "nom": "Chabe Grand Sud",
+   "site": "",
+   "siren": "432606473",
+   "ville": "Saint-Laurent-Du-Var",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:492986716": {
+   "nom": "Multi-Services Chez Vous",
+   "site": "",
+   "siren": "492986716",
+   "ville": "Vaulx-En-Velin",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:350499422": {
+   "nom": "Snc Ambulances Gapencaises",
+   "site": "",
+   "siren": "350499422",
+   "ville": "La Valette-Du-Var",
+   "dirigeants": [
+    {
+     "prenom": "Frederic",
+     "nom": "Delesse",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:344946835": {
+   "nom": "Ambulances Pottier",
+   "site": "",
+   "siren": "344946835",
+   "ville": "Loches",
+   "dirigeants": [
+    {
+     "prenom": "Vivien",
+     "nom": "Pottier",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:817472160": {
+   "nom": "Domi33",
+   "site": "",
+   "siren": "817472160",
+   "ville": "Bordeaux",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:393420344": {
+   "nom": "Ambulances Leblatier",
+   "site": "",
+   "siren": "393420344",
+   "ville": "Marcey-Les-Greves",
+   "dirigeants": [
+    {
+     "prenom": "Mickael",
+     "nom": "Leblatier (Leblatier)",
+     "qualite": ""
+    },
+    {
+     "prenom": "Mickael",
+     "nom": "Leblatier",
+     "qualite": "Président de SAS"
+    },
+    {
+     "prenom": "Romain",
+     "nom": "Leblatier",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:844161067": {
+   "nom": "Famicare Service",
+   "site": "",
+   "siren": "844161067",
+   "ville": "Paris",
+   "dirigeants": [
+    {
+     "prenom": "Lidia",
+     "nom": "Hadjam (Hadji)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:422632562": {
+   "nom": "Fortel",
+   "site": "",
+   "siren": "422632562",
+   "ville": "Fontenay-Sous-Bois",
+   "dirigeants": [
+    {
+     "prenom": "Francois",
+     "nom": "Ancenay (Ancenay)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Jean-Charles",
+     "nom": "Mercier",
+     "qualite": "Commissaire aux comptes suppléant"
+    },
+    {
+     "prenom": "Philippe",
+     "nom": "Piasentin",
+     "qualite": "Commissaire aux comptes titulaire"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:303527162": {
+   "nom": "Ambulances Berjalliennes",
+   "site": "",
+   "siren": "303527162",
+   "ville": "Les Avenieres Veyrins-Thuellin",
+   "dirigeants": [
+    {
+     "prenom": "Luc",
+     "nom": "Bousquet",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:435366976": {
+   "nom": "Ambulance Ambu 35 Sarl",
+   "site": "",
+   "siren": "435366976",
+   "ville": "Pleugueneuc",
+   "dirigeants": [
+    {
+     "prenom": "Stephane",
+     "nom": "Gazengel",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Stephane",
+     "nom": "Gazengel (Gazengel)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:812852044": {
+   "nom": "Logea Domicile",
+   "site": "",
+   "siren": "812852044",
+   "ville": "Bordeaux",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:334148376": {
+   "nom": "Bertucelli",
+   "site": "",
+   "siren": "334148376",
+   "ville": "Preuilly-Sur-Claise",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:453333460": {
+   "nom": "Hareva Confort",
+   "site": "",
+   "siren": "453333460",
+   "ville": "Le Petit-Quevilly",
+   "dirigeants": [
+    {
+     "prenom": "Jeremy",
+     "nom": "Chedmail",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Romain",
+     "nom": "Fourny",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Ilhan",
+     "nom": "Kucukkinali",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:792174856": {
+   "nom": "Eliad",
+   "site": "",
+   "siren": "792174856",
+   "ville": "Besancon",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:493774160": {
+   "nom": "Isowatt",
+   "site": "",
+   "siren": "493774160",
+   "ville": "Dardilly",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:821239969": {
+   "nom": "Am Home Services",
+   "site": "",
+   "siren": "821239969",
+   "ville": "Poitiers",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:798782470": {
+   "nom": "Ambulances Et Taxis De L'Ile Guillou",
+   "site": "",
+   "siren": "798782470",
+   "ville": "Challans",
+   "dirigeants": [
+    {
+     "prenom": "Keran",
+     "nom": "Guillou",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:840803902": {
+   "nom": "Rnm Services",
+   "site": "",
+   "siren": "840803902",
+   "ville": "Toulouse",
+   "dirigeants": [
+    {
+     "prenom": "Brice",
+     "nom": "Augustin",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:519287023": {
+   "nom": "Opale Fermetures",
+   "site": "",
+   "siren": "519287023",
+   "ville": "Maresville",
+   "dirigeants": [
+    {
+     "prenom": "Sebastien",
+     "nom": "Pruvost",
+     "qualite": "Gérant et associé indéfiniment responsable"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:520895483": {
+   "nom": "Tunzini Nucleaire",
+   "site": "",
+   "siren": "520895483",
+   "ville": "Le Pecq",
+   "dirigeants": [
+    {
+     "prenom": "Guillaume",
+     "nom": "Lepinay",
+     "qualite": "Président de SAS"
+    },
+    {
+     "prenom": "Antoine",
+     "nom": "Maurin",
+     "qualite": "Directeur général délégué"
+    },
+    {
+     "prenom": "Julien",
+     "nom": "Pierrot",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:851614016": {
+   "nom": "Provence Domicile Services",
+   "site": "",
+   "siren": "851614016",
+   "ville": "Aubagne",
+   "dirigeants": [
+    {
+     "prenom": "Guillaume",
+     "nom": "Bourdon",
+     "qualite": "Président de SAS"
+    },
+    {
+     "prenom": "Corinne",
+     "nom": "Deodati",
+     "qualite": "Président de SAS"
+    },
+    {
+     "prenom": "Ani",
+     "nom": "Tchakirian (Tonoian)",
+     "qualite": "Directeur Général"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:852426816": {
+   "nom": "Lemaine",
+   "site": "",
+   "siren": "852426816",
+   "ville": "Angers",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:301192464": {
+   "nom": "Acelec",
+   "site": "",
+   "siren": "301192464",
+   "ville": "Bailly-Romainvilliers",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:898750302": {
+   "nom": "Home Energie Concept",
+   "site": "",
+   "siren": "898750302",
+   "ville": "Saint-Romain-De-Jalionas",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:777750043": {
+   "nom": "Federation Departemental Ass Locale Admr",
+   "site": "",
+   "siren": "777750043",
+   "ville": "Rennes",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:420153843": {
+   "nom": "Etablissements Reber",
+   "site": "",
+   "siren": "420153843",
+   "ville": "Saint-Ouen-L'Aumone",
+   "dirigeants": [
+    {
+     "prenom": "Emilio",
+     "nom": "Antunez",
+     "qualite": "Commissaire aux comptes titulaire"
+    },
+    {
+     "prenom": "Jean-Louis",
+     "nom": "Calvo",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:421150145": {
+   "nom": "Help Familles",
+   "site": "",
+   "siren": "421150145",
+   "ville": "Courbevoie",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:260600317": {
+   "nom": "Centre Communal D'Action Sociale",
+   "site": "",
+   "siren": "260600317",
+   "ville": "Le Cannet",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:423568187": {
+   "nom": "Ambulance Du Meygal",
+   "site": "",
+   "siren": "423568187",
+   "ville": "Le Puy-En-Velay",
+   "dirigeants": [
+    {
+     "prenom": "Thierry",
+     "nom": "Desvignes",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Gaetan",
+     "nom": "Vialet",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:073801631": {
+   "nom": "Spie Batignolles Energie Grand Sud",
+   "site": "",
+   "siren": "073801631",
+   "ville": "Aix-En-Provence",
+   "dirigeants": [
+    {
+     "prenom": "Patrick",
+     "nom": "Zulian",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:309686574": {
+   "nom": "Sarl Ets Bex",
+   "site": "",
+   "siren": "309686574",
+   "ville": "Bretenoux",
+   "dirigeants": [
+    {
+     "prenom": "Pierre",
+     "nom": "Bex",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:339735565": {
+   "nom": "Mgj Sas Mage",
+   "site": "",
+   "siren": "339735565",
+   "ville": "Marly",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:781566575": {
+   "nom": "Federation Departement Ds Associations",
+   "site": "",
+   "siren": "781566575",
+   "ville": "Chasseneuil-Du-Poitou",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:325765618": {
+   "nom": "Sarl Horvath Freres",
+   "site": "",
+   "siren": "325765618",
+   "ville": "Athis-Mons",
+   "dirigeants": [
+    {
+     "prenom": "Carole",
+     "nom": "Martins (Loiseau)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:795299684": {
+   "nom": "Ambulance Pinson",
+   "site": "",
+   "siren": "795299684",
+   "ville": "Bourges",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:453457418": {
+   "nom": "Domcare",
+   "site": "",
+   "siren": "453457418",
+   "ville": "Meyrie",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:334923596": {
+   "nom": "Meca Diesel",
+   "site": "",
+   "siren": "334923596",
+   "ville": "Concarneau",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:449078807": {
+   "nom": "Assistance Tech Maintenance Chauffage",
+   "site": "",
+   "siren": "449078807",
+   "ville": "Saint-Vit",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:314318213": {
+   "nom": "Aide A Domicile En Milieu Rural",
+   "site": "",
+   "siren": "314318213",
+   "ville": "Saint-Aubin-D'Aubigne",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:502487630": {
+   "nom": "Norm' Ambulances",
+   "site": "",
+   "siren": "502487630",
+   "ville": "Granville",
+   "dirigeants": [
+    {
+     "prenom": "Jean-Philippe",
+     "nom": "Rachovitch (Rachovitch)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:500510359": {
+   "nom": "Mima",
+   "site": "",
+   "siren": "500510359",
+   "ville": "Oullins-Pierre-Benite",
+   "dirigeants": [
+    {
+     "prenom": "Carole",
+     "nom": "Roucher Sarrazin (Roucher Sarrazin)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Carole",
+     "nom": "Roucher-Sarrazin",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Stephane",
+     "nom": "Toledo",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
   }
  },
  "prospects": {},
@@ -2175,6 +2849,31 @@
    "date": "2026-10-09T15:06:34+02:00",
    "type": "erreur",
    "detail": "exploration pour-les-personnes-agees.gouv.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfriLP7tmoodwVsgKcfbr\"}"
+  },
+  {
+   "date": "2026-10-09T20:46:31+02:00",
+   "type": "sourcing",
+   "detail": "50 entreprise(s) relevée(s) au registre public"
+  },
+  {
+   "date": "2026-10-09T20:46:40+02:00",
+   "type": "erreur",
+   "detail": "exploration groupe-feron.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfsAGZCn6565s3zpEFBuR\"}"
+  },
+  {
+   "date": "2026-10-09T20:46:43+02:00",
+   "type": "erreur",
+   "detail": "exploration solaireclimchauffage.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfsAGpdif5yFHT95683jL\"}"
+  },
+  {
+   "date": "2026-10-09T20:46:52+02:00",
+   "type": "erreur",
+   "detail": "exploration unaide.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfsAHR88V4qwJe1WCdYpJ\"}"
+  },
+  {
+   "date": "2026-10-09T20:47:16+02:00",
+   "type": "erreur",
+   "detail": "exploration pour-les-personnes-agees.gouv.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfsAKDgMPEKYkauy1tQFE\"}"
   }
  ],
  "boite": {
@@ -2182,7 +2881,7 @@
   "prochain_envoi_apres": null
  },
  "registre": {
-  "43.21A,43.22A,43.22B,43.32A,43.34Z,81.21Z,81.22Z,86.90A,49.32Z,88.10A,53.20Z,33.12Z,95.22Z||11,12,21": 7
+  "43.21A,43.22A,43.22B,43.32A,43.34Z,81.21Z,81.22Z,86.90A,49.32Z,88.10A,53.20Z,33.12Z,95.22Z||11,12,21": 9
  },
  "recherches_faites": {},
  "sources_lues": {}
