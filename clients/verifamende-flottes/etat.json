@@ -1380,6 +1380,716 @@
    "dirigeants": [],
    "source": "registre public des entreprises",
    "statut": "sans_site"
+  },
+  "siren:402200562": {
+   "nom": "Largier Technologie",
+   "site": "",
+   "siren": "402200562",
+   "ville": "Vals-Les-Bains",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:409057718": {
+   "nom": "Delayre",
+   "site": "",
+   "siren": "409057718",
+   "ville": "Ambert",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:749935912": {
+   "nom": "Ambulance Bocher Assistance",
+   "site": "",
+   "siren": "749935912",
+   "ville": "Tinteniac",
+   "dirigeants": [
+    {
+     "prenom": "Christophe",
+     "nom": "Bocher",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:908407406": {
+   "nom": "Reseau Alois Service 84",
+   "site": "",
+   "siren": "908407406",
+   "ville": "La Baume-De-Transit",
+   "dirigeants": [
+    {
+     "prenom": "Jean",
+     "nom": "Sotton",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:445123177": {
+   "nom": "Taxi Babut Pere Et Fils",
+   "site": "",
+   "siren": "445123177",
+   "ville": "Beauregard-L'Eveque",
+   "dirigeants": [
+    {
+     "prenom": "Cedric",
+     "nom": "Babut (Babut)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:948409461": {
+   "nom": "Mf Services Sud",
+   "site": "",
+   "siren": "948409461",
+   "ville": "Vincennes",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:821966405": {
+   "nom": "Adg 91",
+   "site": "",
+   "siren": "821966405",
+   "ville": "Chartres",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:350189502": {
+   "nom": "Ambulances Victor-Betbeder",
+   "site": "",
+   "siren": "350189502",
+   "ville": "Tarbes",
+   "dirigeants": [
+    {
+     "prenom": "Emmanuel",
+     "nom": "Victor",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:493102545": {
+   "nom": "Cap Services",
+   "site": "",
+   "siren": "493102545",
+   "ville": "Montpellier",
+   "dirigeants": [
+    {
+     "prenom": "Ludovic",
+     "nom": "Kuntzmann",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:505132225": {
+   "nom": "Thomas Vatel Nettoyage",
+   "site": "",
+   "siren": "505132225",
+   "ville": "Marines",
+   "dirigeants": [
+    {
+     "prenom": "Marion",
+     "nom": "Vatel",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Thomas",
+     "nom": "Vatel",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:418714960": {
+   "nom": "Fruchon Sarl",
+   "site": "",
+   "siren": "418714960",
+   "ville": "Montmorillon",
+   "dirigeants": [
+    {
+     "prenom": "Denis",
+     "nom": "Fruchon",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:422908145": {
+   "nom": "Groupement Interactif Des Metiers De Nettoyage Et De Services",
+   "site": "",
+   "siren": "422908145",
+   "ville": "Ramonville-Saint-Agne",
+   "dirigeants": [
+    {
+     "prenom": "Gino",
+     "nom": "Sellan",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:878676063": {
+   "nom": "Regiesolaire",
+   "site": "",
+   "siren": "878676063",
+   "ville": "Mignaloux-Beauvoir",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:434954517": {
+   "nom": "Nat Express Reunion",
+   "site": "",
+   "siren": "434954517",
+   "ville": "Sainte-Marie",
+   "dirigeants": [
+    {
+     "prenom": "Philippe",
+     "nom": "Llopis",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:332123447": {
+   "nom": "Ambulances Oceane",
+   "site": "",
+   "siren": "332123447",
+   "ville": "Guerande",
+   "dirigeants": [
+    {
+     "prenom": "Michel",
+     "nom": "Abgrall",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Iwan",
+     "nom": "Le Quéré",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Jacynthe",
+     "nom": "Emblanc (Prietz)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:429949670": {
+   "nom": "Entretien Installation Thermique Provencale",
+   "site": "",
+   "siren": "429949670",
+   "ville": "Les Pennes-Mirabeau",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:430102236": {
+   "nom": "Sapeint",
+   "site": "",
+   "siren": "430102236",
+   "ville": "Le Tronchet",
+   "dirigeants": [
+    {
+     "prenom": "Dominique",
+     "nom": "Bertin",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:311772925": {
+   "nom": "Entreprise Generale D'Electrification Rationnelle",
+   "site": "",
+   "siren": "311772925",
+   "ville": "Baie-Mahault",
+   "dirigeants": [
+    {
+     "prenom": "Stéphane",
+     "nom": "Lemarchand",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:447798786": {
+   "nom": "Sarl Alain Jolec",
+   "site": "",
+   "siren": "447798786",
+   "ville": "Plomodiern",
+   "dirigeants": [
+    {
+     "prenom": "Alain",
+     "nom": "Jolec (Jolec)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:929617843": {
+   "nom": "Irisolaris Travaux",
+   "site": "",
+   "siren": "929617843",
+   "ville": "Rousset",
+   "dirigeants": [
+    {
+     "prenom": "Ludovic",
+     "nom": "Crebier",
+     "qualite": "Commissaire aux comptes titulaire"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:481689081": {
+   "nom": "Sarl Corvee",
+   "site": "",
+   "siren": "481689081",
+   "ville": "Gorron",
+   "dirigeants": [
+    {
+     "prenom": "Ludovic",
+     "nom": "Corvee (Corvee)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:381196260": {
+   "nom": "M B M Assistances 88",
+   "site": "",
+   "siren": "381196260",
+   "ville": "Neufchateau",
+   "dirigeants": [
+    {
+     "prenom": "Axel",
+     "nom": "Herel",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Jean-Christophe",
+     "nom": "Pereira De Carvalho",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Alexis",
+     "nom": "Perrot",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:507679140": {
+   "nom": "Clean'Nell",
+   "site": "",
+   "siren": "507679140",
+   "ville": "Pau",
+   "dirigeants": [
+    {
+     "prenom": "Nelly",
+     "nom": "Perez (Ramazeilles)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:394472625": {
+   "nom": "Ouest Ouvertures",
+   "site": "",
+   "siren": "394472625",
+   "ville": "Fougeres",
+   "dirigeants": [
+    {
+     "prenom": "Xavier",
+     "nom": "Jolivet",
+     "qualite": "Gérant et associé indéfiniment responsable"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:403173339": {
+   "nom": "Paris Froid Services",
+   "site": "",
+   "siren": "403173339",
+   "ville": "Wissous",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:537915738": {
+   "nom": "Cegelec Infras Sud-Est",
+   "site": "",
+   "siren": "537915738",
+   "ville": "Vitrolles",
+   "dirigeants": [
+    {
+     "prenom": "Jean-Philippe",
+     "nom": "Merolli",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:314246497": {
+   "nom": "Grolla Verre Sa",
+   "site": "",
+   "siren": "314246497",
+   "ville": "Moutiers",
+   "dirigeants": [
+    {
+     "prenom": "Marc",
+     "nom": "Beggiora",
+     "qualite": "Commissaire aux comptes suppléant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:411976517": {
+   "nom": "Entreprise Maintenance Entretien",
+   "site": "",
+   "siren": "411976517",
+   "ville": "Baie-Mahault",
+   "dirigeants": [
+    {
+     "prenom": "Marie-Claire",
+     "nom": "Verger",
+     "qualite": "Commissaire aux comptes titulaire"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:429726367": {
+   "nom": "Valoprest",
+   "site": "",
+   "siren": "429726367",
+   "ville": "Florange",
+   "dirigeants": [
+    {
+     "prenom": "Sylvie",
+     "nom": "Gernez (Bassetto)",
+     "qualite": "Administrateur"
+    },
+    {
+     "prenom": "Charlick",
+     "nom": "Bois",
+     "qualite": "Administrateur"
+    },
+    {
+     "prenom": "Aurelie",
+     "nom": "Clarenn",
+     "qualite": "Administrateur"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:440852689": {
+   "nom": "Modern'Telecom",
+   "site": "",
+   "siren": "440852689",
+   "ville": "La Roquette-Sur-Siagne",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:445357536": {
+   "nom": "Tanguy - Medic Ambulance",
+   "site": "",
+   "siren": "445357536",
+   "ville": "Lachapelle",
+   "dirigeants": [
+    {
+     "prenom": "Nathalie",
+     "nom": "Tanguy (Simon)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Michel",
+     "nom": "Tanguy (Tanguy)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Michel",
+     "nom": "Tanguy",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:308128727": {
+   "nom": "Association Locale Admr De Gevrey Nuits",
+   "site": "",
+   "siren": "308128727",
+   "ville": "Gevrey-Chambertin",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:907663223": {
+   "nom": "Ingenierie Techniques D'Extinction",
+   "site": "",
+   "siren": "907663223",
+   "ville": "Merignac",
+   "dirigeants": [
+    {
+     "prenom": "Bruno",
+     "nom": "Lestage",
+     "qualite": "Commissaire aux comptes suppléant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:790566517": {
+   "nom": "Eco Conseil",
+   "site": "",
+   "siren": "790566517",
+   "ville": "Cosne-Cours-Sur-Loire",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:908407729": {
+   "nom": "Reseau Alois Service 26",
+   "site": "",
+   "siren": "908407729",
+   "ville": "La Baume-De-Transit",
+   "dirigeants": [
+    {
+     "prenom": "Jean",
+     "nom": "Sottin",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:775190820": {
+   "nom": "Ass Familiale Rurale Chatillon S-Indre",
+   "site": "",
+   "siren": "775190820",
+   "ville": "Chatillon-Sur-Indre",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:440315224": {
+   "nom": "Triskell Ambulances",
+   "site": "",
+   "siren": "440315224",
+   "ville": "Mauron",
+   "dirigeants": [
+    {
+     "prenom": "Tony",
+     "nom": "Ame (Ame)",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Tony",
+     "nom": "Ame",
+     "qualite": "Gérant"
+    },
+    {
+     "prenom": "Olivier",
+     "nom": "Le Corps (Le Corps)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:447668401": {
+   "nom": "Sarl Seizeur",
+   "site": "",
+   "siren": "447668401",
+   "ville": "Cherbourg-En-Cotentin",
+   "dirigeants": [
+    {
+     "prenom": "Dominique",
+     "nom": "Seizeur",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:808984488": {
+   "nom": "Omega Autonomie",
+   "site": "",
+   "siren": "808984488",
+   "ville": "Toulouse",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:498366277": {
+   "nom": "Lersy",
+   "site": "",
+   "siren": "498366277",
+   "ville": "La Roche-Sur-Yon",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:495293177": {
+   "nom": "Transports Guy Lopez",
+   "site": "",
+   "siren": "495293177",
+   "ville": "Oloron-Sainte-Marie",
+   "dirigeants": [
+    {
+     "prenom": "Frederic",
+     "nom": "Lopez",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:500808845": {
+   "nom": "Constructeurs Engages Durablement Et Responsables Pour L'Avenir - Cedra",
+   "site": "",
+   "siren": "500808845",
+   "ville": "Issy-Les-Moulineaux",
+   "dirigeants": [
+    {
+     "prenom": "Jean-Baptiste",
+     "nom": "Gonnet",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:390345452": {
+   "nom": "Sarl Ambulances Cypriotes",
+   "site": "",
+   "siren": "390345452",
+   "ville": "Saint-Cyprien",
+   "dirigeants": [
+    {
+     "prenom": "Mickael",
+     "nom": "Palezis-Lamaud",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:392360624": {
+   "nom": "Garanka Sud Ouest",
+   "site": "",
+   "siren": "392360624",
+   "ville": "L'Isle-D'Espagnac",
+   "dirigeants": [
+    {
+     "prenom": "Philippe",
+     "nom": "Gossart",
+     "qualite": "Président de SAS"
+    },
+    {
+     "prenom": "Louis",
+     "nom": "Moulin",
+     "qualite": "Membre du conseil de surveillance"
+    },
+    {
+     "prenom": "Thomas",
+     "nom": "Perruchot",
+     "qualite": "Membre du conseil de surveillance"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:403161144": {
+   "nom": "Ambulances Arcisiennes",
+   "site": "",
+   "siren": "403161144",
+   "ville": "Arcis-Sur-Aube",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:527910517": {
+   "nom": "Sler Sarl",
+   "site": "",
+   "siren": "527910517",
+   "ville": "Lesperon",
+   "dirigeants": [],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:890493737": {
+   "nom": "F.R.H.",
+   "site": "",
+   "siren": "890493737",
+   "ville": "Pantin",
+   "dirigeants": [
+    {
+     "prenom": "Ilan",
+     "nom": "Cohen (Cohen)",
+     "qualite": "Président de SAS"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:880569975": {
+   "nom": "Taova",
+   "site": "",
+   "siren": "880569975",
+   "ville": "Saint-Martin-Sur-Le-Pre",
+   "dirigeants": [
+    {
+     "prenom": "Zhang",
+     "nom": "Xiang",
+     "qualite": "Autre"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
+  },
+  "siren:534966759": {
+   "nom": "Ambulances Urgence 56",
+   "site": "",
+   "siren": "534966759",
+   "ville": "Baud",
+   "dirigeants": [
+    {
+     "prenom": "Mathieu",
+     "nom": "Le Sausse (Le Sausse)",
+     "qualite": "Gérant"
+    }
+   ],
+   "source": "registre public des entreprises",
+   "statut": "sans_site"
   }
  },
  "prospects": {},
@@ -1440,6 +2150,31 @@
    "date": "2026-10-08T21:27:22+02:00",
    "type": "erreur",
    "detail": "exploration pour-les-personnes-agees.gouv.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfqKZevLDW891R9VxGNkw\"}"
+  },
+  {
+   "date": "2026-10-09T15:06:01+02:00",
+   "type": "sourcing",
+   "detail": "49 entreprise(s) relevée(s) au registre public"
+  },
+  {
+   "date": "2026-10-09T15:06:10+02:00",
+   "type": "erreur",
+   "detail": "exploration groupe-feron.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfriJcB9q8nExgiH6B92s\"}"
+  },
+  {
+   "date": "2026-10-09T15:06:14+02:00",
+   "type": "erreur",
+   "detail": "exploration solaireclimchauffage.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfriJsSRCYNSGTuqAFrte\"}"
+  },
+  {
+   "date": "2026-10-09T15:06:22+02:00",
+   "type": "erreur",
+   "detail": "exploration unaide.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfriKTgCXKsF4mwwzgWcN\"}"
+  },
+  {
+   "date": "2026-10-09T15:06:34+02:00",
+   "type": "erreur",
+   "detail": "exploration pour-les-personnes-agees.gouv.fr : API Claude 400 : {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfriLP7tmoodwVsgKcfbr\"}"
   }
  ],
  "boite": {
@@ -1447,7 +2182,7 @@
   "prochain_envoi_apres": null
  },
  "registre": {
-  "43.21A,43.22A,43.22B,43.32A,43.34Z,81.21Z,81.22Z,86.90A,49.32Z,88.10A,53.20Z,33.12Z,95.22Z||11,12,21": 5
+  "43.21A,43.22A,43.22B,43.32A,43.34Z,81.21Z,81.22Z,86.90A,49.32Z,88.10A,53.20Z,33.12Z,95.22Z||11,12,21": 7
  },
  "recherches_faites": {},
  "sources_lues": {}
