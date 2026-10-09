@@ -39,6 +39,19 @@ def _proxy_linkup_status():
         return "OK (clé LinkupAPI présente sur Render)" if d.get("linkup_configured") else "ÉCHEC : clé LinkupAPI absente sur Render"
     return "ÉCHEC : "+str(d.get("detail") or r.status_code)
 
+def _linkedin_accounts_status():
+    h=oidc.headers()
+    if not h:
+        return ["Jeton de vérification OIDC indisponible"]
+    r=requests.get("https://new-app-i5ds.onrender.com/api/coldmail/engine/linkedin/check",headers=h,timeout=130)
+    if not r.ok:
+        return ["API de vérification indisponible : "+str(r.status_code)]
+    noms={"g2axzrqn5j99":"Alexandre","gbw3qzqef6dp":"Laurent",
+          "vvv2zu6xw9ti":"Lionel","hjshi62xz9sh":"Lisa",
+          "yv5vae7kcm6u":"Willy","c2gpvctqqmyj":"VerifAmende"}
+    return [f"{noms.get(x.get('code'), 'Client')} : {x.get('status')} (plateforme : {x.get('platform') or 'non confirmée'})"
+            for x in (r.json().get("accounts") or [])]
+
 def _linkup(fiche, cle):
     lu=fiche.get("linkup") or {}
     aid=lu.get("account_id") or ""
@@ -121,6 +134,11 @@ def rapport():
     l.append(f"- Registre public des entreprises : {_essai(registre)}")
     l.append(f"- Lecture d'une page (verifamende.fr/flottes) : {_essai(page)}")
     l.append(f"- Contrôle d'un domaine email (verifamende.fr) : {_essai(lambda: {True: 'OK, reçoit du courrier', False: 'ne reçoit pas de courrier', None: 'ÉCHEC : résolveur injoignable'}[verif.a_un_mx('verifamende.fr')])}")
+    l += ["", "## Vérification des comptes LinkedIn (sans prospection)", ""]
+    try:
+        l += ["- " + v for v in _linkedin_accounts_status()]
+    except Exception as e:
+        l.append("- Erreur de vérification : "+str(e)[:180])
     l += ["", "## Boîtes d'envoi LinkupAPI", ""]
     for c in lister_clients():
         if c == "exemple":
