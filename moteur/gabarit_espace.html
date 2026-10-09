@@ -184,6 +184,34 @@ function pilotage(){
   </section>`;
 }
 
+
+let vueCalendrier = "avenir";
+const retraitsEnAttente = new Set();
+function planning(){
+  const ev = D.calendrier || [];
+  const finis = ev.filter(x=>x.etat==="envoye");
+  const futurs = ev.filter(x=>x.etat!=="envoye" && x.statut_prospect!=="ecarte" && !retraitsEnAttente.has(x.email));
+  const rows = (vueCalendrier==="passes" ? finis : futurs);
+  const hh = (D.pilotage?.heures || [8.5,17.5]).map(n=>String(Math.floor(n)).padStart(2,"0")+"h"+String(Math.round((n%1)*60)).padStart(2,"0")).join("–");
+  const cards = rows.map(x=>{
+    const moment=x.etat==="envoye" ? heure(x.date) : x.date ? jour(x.date)+" · heure à confirmer" : x.etat==="brouillon" ? "En attente de validation" : "Prochain créneau ouvré · "+hh;
+    const statut=x.etat==="envoye" ? "Envoyé" : x.etat==="brouillon" ? "Brouillon à valider" : "Validé, en attente d'envoi";
+    return `<article class="fiche">
+      <div class="ligne"><span class="pastille ${x.etat==="envoye"?"p-ok":"p-neutre"}">${esc(statut)}</span><span class="petit">${esc(moment)}</span><b>${x.etape===1?"Email initial":"Relance J+"+x.jour_relatif}</b></div>
+      <div class="ligne"><span class="qui">${esc(x.nom)}</span><span>${esc(x.entreprise)}</span><span class="petit">${esc(x.email)}</span></div>
+      <details><summary>Voir le message exact</summary><div class="lettre">${x.objet?'<span class="objet">'+esc(x.objet)+'</span>':""}${esc(x.corps)}</div></details>
+      ${x.etat!=="envoye"&&x.retirable?`<div class="actions"><button class="bouton discret" data-act="retirer" data-id="${esc(x.prospect)}" data-email="${esc(x.email)}">Retirer ce prospect de la campagne</button></div>`:""}
+    </article>`;
+  }).join("");
+  return `<section id="planning"><h2>Calendrier et séquences d'envoi</h2>
+   <p class="petit">Suivez chaque message, consultez sa rédaction et retirez un prospect avant un envoi. Les envois respectent les heures et limites configurées : IRIS n'annonce une heure précise que lorsqu'elle est effectivement disponible.</p>
+   <div class="filtres"><button data-planning="avenir" aria-pressed="${vueCalendrier==="avenir"}">À venir (${futurs.length})</button><button data-planning="passes" aria-pressed="${vueCalendrier==="passes"}">Déjà envoyés (${finis.length})</button></div>
+   ${ERREUR?'<p class="note-ko">'+esc(ERREUR)+'</p>':""}
+   ${cards || '<p class="vide">'+(vueCalendrier==="passes"?"Aucun message envoyé pour le moment.":"Aucun message planifié pour l’instant. Les séquences apparaîtront après rédaction et validation.")+'</p>'}
+   <p class="petit">Attention : J+3 et J+7 sont des délais conditionnels après le premier email ; une réponse ou un retrait annule les relances restantes. La plage horaire n'est pas une promesse d'heure fixe.</p>
+  </section>`;
+}
+
 function recommandations(){
   const top = D.top_prospects || [];
   const opt = D.optimisation_cible || {};
@@ -275,7 +303,7 @@ function rendre(){
   document.title = D.client + " · IRIS cold emailing";
   document.getElementById("tete").innerHTML = entete();
   const y = scrollY;
-  document.getElementById("page").innerHTML = pilotage() + recommandations() + attente() + chiffres() + reponses() + prevu() + contacts() + journal();
+  document.getElementById("page").innerHTML = pilotage() + planning() + recommandations() + attente() + chiffres() + reponses() + prevu() + contacts() + journal();
   scrollTo(0, y);
 }
 async function envoyer(decisions){
@@ -307,6 +335,11 @@ async function agir(b){
     }
     decisions.push({action: "valider", prospect: id});
     marquer = () => { retenir(id, "Corrigé et validé. " + DELAI); EDITION = null; };
+  } else if (act === "retirer") {
+    const email = b.dataset.email;
+    if (!confirm("Retirer "+email+" de la campagne et empêcher ses prochains emails ?")) return;
+    decisions=[{action:"refuser",prospect:id,email,motif:"retrait explicite par le client"}];
+    marquer=()=>retraitsEnAttente.add(email);
   } else if (act === "trouver") {
     decisions = [{action:"trouver_prospects", quantite:10}];
     marquer = () => retenir("_recherche", "IRIS va chercher 10 nouveaux prospects. " + DELAI);
@@ -334,6 +367,8 @@ async function charger(){
 const page = document.getElementById("page");
 page.addEventListener("input", e => { if (e.target.id === "cherche") document.getElementById("corps").innerHTML = lignesContacts(); });
 document.addEventListener("click", e => {
+  const p = e.target.closest("button[data-planning]");
+  if (p) { vueCalendrier=p.dataset.planning; rendre(); return; }
   const f = e.target.closest("#filtres button");
   if (f) { filtre = f.dataset.f; document.querySelectorAll("#filtres button").forEach(x => x.setAttribute("aria-pressed", x === f)); document.getElementById("corps").innerHTML = lignesContacts(); return; }
   const b = e.target.closest("button[data-act]");
