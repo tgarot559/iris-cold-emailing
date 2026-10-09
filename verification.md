@@ -1,15 +1,16 @@
-# Vérification du 2026-10-08 à 17:08
+# Vérification du 2026-10-09 à 09:21
 
 Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.
 
 ## Clés
 
+- Clé OpenAI : ABSENTE
 - Clé Claude : présente
-  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cfpynn3VRHGvNmrxLF3TV"}
-  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfpynofyankQ1CAUHMNnW"}
+  - modèle de extraction (claude-haiku-4-5-20251001) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfrFzyvosSpazw3GWbA4Q"}
+  - modèle de redaction (claude-sonnet-5-5) : ÉCHEC : API Claude 400 : {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CfrG11WK6kqBbKJRNdoVY"}
 - Clé ScrapeGraphAI : présente
 - Accès LinkupAPI via IRIS/OIDC : OK (clé LinkupAPI présente sur Render)
-  - compte : plan Free Plan, 444 crédits restants
+  - compte : plan Free Plan, 402 crédits restants
 
 ## Accès au web
 
