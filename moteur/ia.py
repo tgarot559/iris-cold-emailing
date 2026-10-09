@@ -13,7 +13,38 @@ class ErreurIA(Exception):
 
 
 def fabriquer(cle, espace=""):
-    """Renvoie une fonction ia(systeme, message, modele, max_tokens) -> texte."""
+    """Renvoie une fonction ia(systeme, message, modele, max_tokens) -> texte.
+    OPENAI_API_KEY, if configured, takes priority over the Anthropic provider.
+    """
+    import os
+    openai_key=(os.environ.get("OPENAI_API_KEY") or "").strip()
+    if openai_key:
+        def ia_openai(systeme, message, modele, max_tokens=2000):
+            # The existing model IDs are Claude-specific. Use a dedicated OpenAI model.
+            selected=(os.environ.get("OPENAI_COLDMAIL_MODEL") or "gpt-4.1-mini").strip()
+            payload={"model":selected,"messages":[
+                {"role":"system","content":systeme},
+                {"role":"user","content":message}
+            ],"max_tokens":max_tokens,"temperature":0.2}
+            for essai in range(4):
+                try:
+                    response=requests.post("https://api.openai.com/v1/chat/completions",
+                        headers={"Authorization":"Bearer "+openai_key,"Content-Type":"application/json"},
+                        json=payload,timeout=120)
+                except requests.RequestException as exc:
+                    raise ErreurIA("API OpenAI inaccessible : "+str(exc)[:150]) from exc
+                if response.status_code in (429,500,502,503):
+                    time.sleep(4*(essai+1))
+                    continue
+                if response.status_code!=200:
+                    raise ErreurIA(f"API OpenAI {response.status_code} : {response.text[:220]}")
+                try:
+                    result=response.json()
+                    return result["choices"][0]["message"]["content"] or ""
+                except (KeyError,IndexError,TypeError,ValueError) as exc:
+                    raise ErreurIA("Réponse OpenAI invalide.") from exc
+            raise ErreurIA("API OpenAI indisponible après plusieurs essais.")
+        return ia_openai
     if not cle:
         def absente(*a, **k):
             raise ErreurIA("Clé API Claude absente (secrets : champ 'anthropic').")
