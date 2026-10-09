@@ -24,7 +24,7 @@ def donnees(fiche, etat):
     statuts = Counter(p["statut"] for p in etat["prospects"].values())
     contactes = {m["prospect"] for m in envoyes}
     delais = fiche["sequence"]["delais_jours"]
-    contacts, attente, reponses, prevu = [], [], [], Counter()
+    contacts, attente, reponses, prevu, calendrier = [], [], [], Counter(), []
     for p in etat["prospects"].values():
         ms = messages_de(etat, p["id"])
         partis = [m for m in ms if m["statut"] == "envoye"]
@@ -36,6 +36,24 @@ def donnees(fiche, etat):
                 d += timedelta(days=1)
             echeance = d.isoformat()
             prevu[echeance] += 1
+        for m in ms:
+            if m.get("statut") not in ("envoye", "valide", "brouillon"):
+                continue
+            date_prevue = None
+            if m["statut"] == "envoye":
+                date_prevue = m.get("envoye_le")
+            elif m["etape"] > 1 and ms and ms[0].get("envoye_le"):
+                d = lire_date(ms[0]["envoye_le"]).date() + timedelta(days=delais[m["etape"] - 1])
+                while d.weekday() not in fiche["cadence"]["jours"]:
+                    d += timedelta(days=1)
+                date_prevue = d.isoformat()
+            calendrier.append({
+                "prospect": p["id"], "nom": (p["prenom"] + " " + p["nom"]).strip() or "Adresse générale",
+                "entreprise": p["entreprise"], "email": p["email"], "statut_prospect": p["statut"],
+                "etape": m["etape"], "objet": m.get("objet") or (ms[0].get("objet") if ms else ""),
+                "corps": m.get("corps") or "", "etat": m["statut"], "date": date_prevue,
+                "jour_relatif": delais[m["etape"] - 1], "retirable": p["statut"] not in ("stop", "ecarte", "rebond", "termine"),
+            })
         strat = p.get("strategie") or {}
         contacts.append({
             "id": p["id"],
@@ -101,6 +119,7 @@ def donnees(fiche, etat):
                      "arrets": statuts["stop"], "invalides": statuts["rebond"]},
         "prets": statuts["pret"], "attente": attente, "reponses": reponses, "contacts": contacts,
         "prevu": [{"jour": j, "relances": n} for j, n in sorted(prevu.items())[:6]],
+        "calendrier": sorted(calendrier, key=lambda x: (x["etat"] != "envoye", x["date"] or "9999", x["entreprise"], x["etape"]))[:600],
         "journal": [j for j in etat["journal"] if j["type"] != "decision"][-12:][::-1],
         "cible": fiche["cible"]["description"], "sequence": delais,
         "pilotage": {
