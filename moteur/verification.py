@@ -3,6 +3,7 @@ import imaplib
 import smtplib
 import ssl
 import requests
+import os
 
 from . import sgai, sourcing, verif, oidc
 from .ia import ErreurIA, fabriquer
@@ -87,9 +88,18 @@ def rapport():
     sec = secrets("")
     l = [f"# Vérification du {iso()[:16].replace('T', ' à ')}", "",
          "Aucun message n'a été envoyé. Aucune clé n'apparaît dans ce fichier.", "", "## Clés", ""]
+    openai_present=bool((os.environ.get("OPENAI_API_KEY") or "").strip())
+    l.append(f"- Clé OpenAI : {'présente' if openai_present else 'ABSENTE'}")
+    if openai_present:
+        try:
+            result=fabriquer(sec["anthropic"],sec["anthropic_espace"])("Réponds uniquement ok", "Test de connexion sans email", "gpt-4.1-mini", 12)
+            l.append("- Test de génération OpenAI : "+("OK" if result.strip().lower().startswith("ok") else "réponse obtenue, à vérifier"))
+        except ErreurIA as e:
+            l.append("- Test de génération OpenAI : ÉCHEC : "+str(e)[:220])
     l.append(f"- Clé Claude : {'présente' if sec['anthropic'] else 'ABSENTE'}")
-    for role in ("extraction", "redaction"):
-        l.append(f"  - modèle de {role} ({DEFAUTS['ia'][role]}) : {_essai(lambda r=role: _claude(sec, DEFAUTS['ia'][r]))}")
+    if not openai_present:
+        for role in ("extraction", "redaction"):
+            l.append(f"  - modèle de {role} ({DEFAUTS['ia'][role]}) : {_essai(lambda r=role: _claude(sec, DEFAUTS['ia'][r]))}")
     l.append(f"- Clé ScrapeGraphAI : {'présente' if sec['scrapegraph'] else 'absente'}")
     l.append(f"- Accès LinkupAPI via IRIS/OIDC : {_essai(_proxy_linkup_status)}")
     if sec["scrapegraph"]:
